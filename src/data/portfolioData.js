@@ -7,6 +7,7 @@ export const portfolioData = {
       "I am a Computer Engineering student passionate about web development and creating user-friendly digital experiences. I have hands-on experience in full-stack development using React and the MERN stack. I enjoy building practical projects, learning new technologies, and transforming ideas into responsive and interactive web applications.",
     location: "Maharashtra, India",
     status: "Open to Full Stack & React Opportunities",
+    photo: "/ruchika-patil.jpg",
     email: "ruchikapatil82@gmail.com", // Aap apna exact email yahan update kar sakte hain
     github: "https://github.com/ruchikapatil82",
     linkedin: "https://www.linkedin.com/in/ruchika-patil", // Aap apna LinkedIn URL yahan update kar sakte hain

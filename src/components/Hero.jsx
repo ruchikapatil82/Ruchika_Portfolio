@@ -245,64 +245,82 @@ export default function Hero({ onOpenResume, onCopyEmail }) {
             <div style={{ textAlign: 'center', position: 'relative' }}>
               <div
                 style={{
-                  width: '120px',
-                  height: '120px',
+                  width: '140px',
+                  height: '140px',
                   margin: '0 auto 1.25rem',
-                  borderRadius: '28px',
-                  background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(236, 72, 153, 0.3))',
+                  borderRadius: '32px',
+                  background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.6), rgba(236, 72, 153, 0.6))',
                   padding: '3px',
                   boxShadow: '0 0 35px rgba(168, 85, 247, 0.35)',
                   position: 'relative',
                 }}
               >
-                {/* SVG 3D Developer Avatar Graphic */}
-                <div
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    borderRadius: '25px',
-                    background: 'var(--bg-card-solid)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    overflow: 'hidden',
-                  }}
-                >
-                  <svg viewBox="0 0 100 100" width="85" height="85">
-                    {/* Glowing background aura */}
-                    <circle cx="50" cy="50" r="42" fill="url(#avatarGlow)" opacity="0.25" />
-                    {/* Modern stylized developer avatar */}
-                    <path
-                      d="M26 86 C26 70, 36 62, 50 62 C64 62, 74 70, 74 86"
-                      fill="url(#bodyGrad)"
+                {personal.photo ? (
+                  <div
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      borderRadius: '29px',
+                      overflow: 'hidden',
+                      position: 'relative',
+                      background: 'var(--bg-card-solid)',
+                    }}
+                  >
+                    <img
+                      src={personal.photo}
+                      alt={personal.name}
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        objectPosition: 'center 20%',
+                      }}
                     />
-                    {/* Head */}
-                    <circle cx="50" cy="40" r="18" fill="url(#faceGrad)" />
-                    {/* Stylish glasses / AR visor */}
-                    <rect x="36" y="36" width="28" height="9" rx="4.5" fill="#a855f7" opacity="0.9" />
-                    <line x1="41" y1="40" x2="49" y2="40" stroke="#fdf4ff" strokeWidth="1.5" />
-                    <line x1="51" y1="40" x2="59" y2="40" stroke="#fdf4ff" strokeWidth="1.5" />
-                    {/* Code symbol badge */}
-                    <circle cx="75" cy="28" r="12" fill="#ec4899" />
-                    <text x="75" y="32" fontSize="9" fontWeight="bold" fill="#fff" textAnchor="middle">
-                      &lt;/&gt;
-                    </text>
-                    <defs>
-                      <linearGradient id="avatarGlow" x1="0" y1="0" x2="1" y2="1">
-                        <stop offset="0%" stopColor="#a855f7" />
-                        <stop offset="1%" stopColor="#ec4899" />
-                      </linearGradient>
-                      <linearGradient id="faceGrad" x1="0" y1="0" x2="1" y2="1">
-                        <stop offset="0%" stopColor="#e9d5ff" />
-                        <stop offset="1%" stopColor="#c084fc" />
-                      </linearGradient>
-                      <linearGradient id="bodyGrad" x1="0" y1="0" x2="1" y2="1">
-                        <stop offset="0%" stopColor="#8b5cf6" />
-                        <stop offset="1%" stopColor="#4f46e5" />
-                      </linearGradient>
-                    </defs>
-                  </svg>
-                </div>
+                  </div>
+                ) : (
+                  <div
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      borderRadius: '25px',
+                      background: 'var(--bg-card-solid)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      overflow: 'hidden',
+                    }}
+                  >
+                    <svg viewBox="0 0 100 100" width="85" height="85">
+                      <circle cx="50" cy="50" r="42" fill="url(#avatarGlow)" opacity="0.25" />
+                      <path
+                        d="M26 86 C26 70, 36 62, 50 62 C64 62, 74 70, 74 86"
+                        fill="url(#bodyGrad)"
+                      />
+                      <circle cx="50" cy="40" r="18" fill="url(#faceGrad)" />
+                      <rect x="36" y="36" width="28" height="9" rx="4.5" fill="#a855f7" opacity="0.9" />
+                      <line x1="41" y1="40" x2="49" y2="40" stroke="#fdf4ff" strokeWidth="1.5" />
+                      <line x1="51" y1="40" x2="59" y2="40" stroke="#fdf4ff" strokeWidth="1.5" />
+                      <circle cx="75" cy="28" r="12" fill="#ec4899" />
+                      <text x="75" y="32" fontSize="9" fontWeight="bold" fill="#fff" textAnchor="middle">
+                        &lt;/&gt;
+                      </text>
+                      <defs>
+                        <linearGradient id="avatarGlow" x1="0" y1="0" x2="1" y2="1">
+                          <stop offset="0%" stopColor="#a855f7" />
+                          <stop offset="1%" stopColor="#ec4899" />
+                        </linearGradient>
+                        <linearGradient id="faceGrad" x1="0" y1="0" x2="1" y2="1">
+                          <stop offset="0%" stopColor="#e9d5ff" />
+                          <stop offset="1%" stopColor="#c084fc" />
+                        </linearGradient>
+                        <linearGradient id="bodyGrad" x1="0" y1="0" x2="1" y2="1">
+                          <stop offset="0%" stopColor="#8b5cf6" />
+                          <stop offset="1%" stopColor="#4f46e5" />
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                  </div>
+                )}
               </div>
 
               <div style={{ fontWeight: 700, fontSize: '1.1rem', letterSpacing: '-0.02em' }}>
