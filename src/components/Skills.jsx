@@ -60,7 +60,7 @@ export default function Skills() {
   const allSkills = [
     ...skills.frontend.map((s) => ({ ...s, category: 'frontend', catLabel: 'Frontend' })),
     ...skills.backend.map((s) => ({ ...s, category: 'backend', catLabel: 'Backend' })),
-    ...skills.languages.map((s) => ({ ...s, category: 'languages', catLabel: 'Language' })),
+    ...(skills.programming || skills.languages || []).map((s) => ({ ...s, category: 'languages', catLabel: 'Language' })),
     ...skills.database.map((s) => ({ ...s, category: 'database', catLabel: 'Database' })),
     ...skills.tools.map((s) => ({ ...s, category: 'tools', catLabel: 'Tool' })),
   ]

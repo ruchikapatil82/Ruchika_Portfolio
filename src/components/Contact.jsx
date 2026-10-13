@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import confetti from 'canvas-confetti'
 import {
   Mail,
+  Phone,
   Send,
   MapPin,
   CheckCircle2,
@@ -170,6 +171,51 @@ export default function Contact({ onOpenResume, onCopyEmail, copiedToast }) {
                     <Copy size={13} />
                     <span>Copy</span>
                   </button>
+                </div>
+
+                {/* Phone Action */}
+                <div
+                  style={{
+                    padding: '1.15rem',
+                    borderRadius: '1rem',
+                    background: 'rgba(255, 255, 255, 0.03)',
+                    border: '1px solid var(--border-subtle)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    gap: '0.75rem',
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', minWidth: 0 }}>
+                    <div
+                      style={{
+                        width: '40px',
+                        height: '40px',
+                        borderRadius: '10px',
+                        background: 'rgba(251, 113, 133, 0.15)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        flexShrink: 0,
+                      }}
+                    >
+                      <Phone size={18} color="#fb7185" />
+                    </div>
+                    <div>
+                      <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Direct Phone / WhatsApp</div>
+                      <div style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--text-primary)' }}>
+                        {personal.phone}
+                      </div>
+                    </div>
+                  </div>
+
+                  <a
+                    href={`tel:${personal.phone}`}
+                    className="btn-secondary"
+                    style={{ padding: '0.45rem 0.85rem', fontSize: '0.8rem', flexShrink: 0, textDecoration: 'none' }}
+                  >
+                    <span>Call</span>
+                  </a>
                 </div>
 
                 {/* Location */}

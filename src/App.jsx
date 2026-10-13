@@ -37,15 +37,15 @@ export default function App() {
 
   return (
     <div style={{ position: 'relative', minHeight: '100vh' }}>
-      {/* Ambient Radial Lights */}
-      <div className="ambient-bg" aria-hidden="true">
-        <div className="ambient-orb ambient-orb-1"></div>
-        <div className="ambient-orb ambient-orb-2"></div>
-        <div className="ambient-orb ambient-orb-3"></div>
+      {/* Studio Ambient Layer */}
+      <div className="studio-ambient" aria-hidden="true">
+        <div className="ambient-flare flare-1"></div>
+        <div className="ambient-flare flare-2"></div>
+        <div className="ambient-flare flare-3"></div>
       </div>
 
-      {/* Subtle Grid Pattern Overlay */}
-      <div className="mesh-grid" aria-hidden="true"></div>
+      {/* Architectural Dot Matrix Overlay */}
+      <div className="dot-matrix" aria-hidden="true"></div>
 
       {/* Main Navigation */}
       <Navbar

@@ -4,12 +4,13 @@ import {
   FileDown,
   X,
   ExternalLink,
-  Award,
-  CheckCircle2,
   GraduationCap,
   Briefcase,
-  Layers,
-  Sparkles,
+  Award,
+  CheckCircle2,
+  Mail,
+  Phone,
+  Eye,
 } from 'lucide-react'
 import { portfolioData } from '../data/portfolioData'
 
@@ -27,10 +28,10 @@ export default function ResumeModal({ isOpen, onClose }) {
         style={{
           position: 'fixed',
           inset: 0,
-          zIndex: 100,
-          background: 'rgba(0, 0, 0, 0.8)',
-          backdropFilter: 'blur(10px)',
-          WebkitBackdropFilter: 'blur(10px)',
+          zIndex: 150,
+          background: 'rgba(5, 6, 10, 0.88)',
+          backdropFilter: 'blur(16px)',
+          WebkitBackdropFilter: 'blur(16px)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -39,17 +40,19 @@ export default function ResumeModal({ isOpen, onClose }) {
         onClick={onClose}
       >
         <motion.div
-          initial={{ scale: 0.95, y: 20 }}
+          initial={{ scale: 0.94, y: 20 }}
           animate={{ scale: 1, y: 0 }}
-          exit={{ scale: 0.95, y: 20 }}
-          className="bento-card"
+          exit={{ scale: 0.94, y: 20 }}
           style={{
-            maxWidth: '680px',
+            maxWidth: '720px',
             width: '100%',
-            maxHeight: '88vh',
+            maxHeight: '90vh',
             overflowY: 'auto',
-            padding: '2rem',
-            background: 'var(--bg-card-solid)',
+            padding: '2.25rem',
+            background: 'var(--bg-surface)',
+            borderRadius: '2rem',
+            border: '1px solid var(--border-medium)',
+            boxShadow: '0 30px 80px rgba(0, 0, 0, 0.8)',
             position: 'relative',
           }}
           onClick={(e) => e.stopPropagation()}
@@ -60,20 +63,20 @@ export default function ResumeModal({ isOpen, onClose }) {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
-              marginBottom: '1.5rem',
-              paddingBottom: '1rem',
+              marginBottom: '1.75rem',
+              paddingBottom: '1.25rem',
               borderBottom: '1px solid var(--border-subtle)',
             }}
           >
             <div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <FileDown size={20} color="#c084fc" />
-                <h3 style={{ fontSize: '1.4rem', fontWeight: 700, margin: 0 }}>
-                  Resume Summary — {personal.name}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+                <FileDown size={22} color="#fb7185" />
+                <h3 style={{ fontSize: '1.5rem', fontWeight: 800, margin: 0 }}>
+                  Official Resume — {personal.fullName}
                 </h3>
               </div>
-              <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>
-                Computer Engineering | Full Stack & React Developer
+              <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>
+                Computer Engineering | Sumago Infotech Intern | 90.71 CGPA
               </div>
             </div>
 
@@ -81,9 +84,9 @@ export default function ResumeModal({ isOpen, onClose }) {
               onClick={onClose}
               aria-label="Close Resume Modal"
               style={{
-                width: '32px',
-                height: '32px',
-                borderRadius: '8px',
+                width: '36px',
+                height: '36px',
+                borderRadius: '50%',
                 background: 'rgba(255, 255, 255, 0.05)',
                 border: '1px solid var(--border-subtle)',
                 color: 'var(--text-secondary)',
@@ -97,113 +100,120 @@ export default function ResumeModal({ isOpen, onClose }) {
             </button>
           </div>
 
-          {/* Quick Resume Highlights */}
+          {/* Quick Contact Header on Resume */}
+          <div
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              gap: '1rem',
+              padding: '1rem 1.25rem',
+              borderRadius: '1rem',
+              background: 'var(--bg-surface-elevated)',
+              marginBottom: '1.5rem',
+              border: '1px solid var(--border-subtle)',
+              fontSize: '0.88rem',
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: 'var(--text-primary)' }}>
+              <Mail size={15} color="#fb7185" />
+              <span>{personal.email}</span>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: 'var(--text-primary)' }}>
+              <Phone size={15} color="#fb7185" />
+              <span>{personal.phone}</span>
+            </div>
+            <div style={{ color: 'var(--text-muted)' }}>
+              {personal.location}
+            </div>
+          </div>
+
+          {/* Key Qualifications Grid */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-            {/* Education Summary */}
+            {/* Education Record */}
             <div
               style={{
-                padding: '1rem 1.25rem',
-                borderRadius: '0.85rem',
-                background: 'rgba(168, 85, 247, 0.06)',
-                border: '1px solid rgba(168, 85, 247, 0.2)',
+                padding: '1.15rem 1.35rem',
+                borderRadius: '1rem',
+                background: 'rgba(245, 158, 11, 0.06)',
+                border: '1px solid rgba(245, 158, 11, 0.25)',
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 700, fontSize: '0.95rem', marginBottom: '0.25rem' }}>
-                <GraduationCap size={16} color="#c084fc" />
-                <span>{education.degree}</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 800, fontSize: '0.98rem', marginBottom: '0.35rem' }}>
+                <GraduationCap size={18} color="#f59e0b" />
+                <span>Diploma in Computer Engineering — SSVPS Polytechnic</span>
               </div>
-              <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
-                {education.institution} • {education.location}
+              <div style={{ fontSize: '0.88rem', color: 'var(--text-secondary)' }}>
+                Dhule, Maharashtra • Completed with <strong>90.71 CGPA</strong>
               </div>
-              <div style={{ fontSize: '0.825rem', color: '#c084fc', fontWeight: 600, marginTop: '0.35rem' }}>
-                Academic Merit: {education.achievement} ({education.achievementLabel})
+              <div style={{ fontSize: '0.825rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>
+                Current: Direct Second Year B.E. at R.C. Patel Institute of Technology (RCPIT), Shirpur
               </div>
             </div>
 
-            {/* Internship Summary */}
+            {/* Internship Record */}
             <div
               style={{
-                padding: '1rem 1.25rem',
-                borderRadius: '0.85rem',
-                background: 'rgba(236, 72, 153, 0.06)',
-                border: '1px solid rgba(236, 72, 153, 0.2)',
+                padding: '1.15rem 1.35rem',
+                borderRadius: '1rem',
+                background: 'rgba(251, 113, 133, 0.06)',
+                border: '1px solid rgba(251, 113, 133, 0.25)',
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 700, fontSize: '0.95rem', marginBottom: '0.25rem' }}>
-                <Briefcase size={16} color="#ec4899" />
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 800, fontSize: '0.98rem', marginBottom: '0.35rem' }}>
+                <Briefcase size={18} color="#fb7185" />
                 <span>{experience[0].role} — {experience[0].company}</span>
               </div>
-              <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
-                Stack: {experience[0].technology} • {experience[0].period}
+              <div style={{ fontSize: '0.88rem', color: 'var(--text-secondary)' }}>
+                {experience[0].location} • {experience[0].period} ({experience[0].technology})
               </div>
-              <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>
-                Best Performer of the Month • Curious Catalyst Award
-              </div>
-            </div>
-
-            {/* Core Tech Stack */}
-            <div>
-              <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-muted)', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                Core Competencies
-              </div>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
-                {skills.frontend.map((s) => (
-                  <span key={s.name} className="tech-pill" style={{ fontSize: '0.78rem' }}>
-                    {s.name}
-                  </span>
-                ))}
-                {skills.backend.map((s) => (
-                  <span key={s.name} className="tech-pill" style={{ fontSize: '0.78rem' }}>
-                    {s.name}
-                  </span>
-                ))}
-                {skills.languages.map((s) => (
-                  <span key={s.name} className="tech-pill" style={{ fontSize: '0.78rem' }}>
-                    {s.name}
-                  </span>
-                ))}
+              <div style={{ fontSize: '0.825rem', color: '#f43f5e', fontWeight: 600, marginTop: '0.35rem' }}>
+                Awarded: Best Performer of the Month (July) & Curious Catalyst Valedictory Award
               </div>
             </div>
 
-            {/* Featured Projects Highlight */}
+            {/* Core Technical Stacks */}
             <div>
-              <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-muted)', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                Key Projects Included
+              <div style={{ fontSize: '0.825rem', fontWeight: 800, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.5rem' }}>
+                Core Skills Matrix (from Resume)
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.45rem' }}>
+                <span className="pill-tag">React.js</span>
+                <span className="pill-tag">Node.js</span>
+                <span className="pill-tag">Express.js</span>
+                <span className="pill-tag">MongoDB</span>
+                <span className="pill-tag">JavaScript (ES6+)</span>
+                <span className="pill-tag">Python & Django</span>
+                <span className="pill-tag">C Language</span>
+                <span className="pill-tag">Java</span>
+                <span className="pill-tag">HTML5 / CSS3</span>
+                <span className="pill-tag">OOP & Data Structures</span>
+              </div>
+            </div>
+
+            {/* Key Projects */}
+            <div>
+              <div style={{ fontSize: '0.825rem', fontWeight: 800, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.5rem' }}>
+                Academic Projects Featured
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                 {projects.slice(0, 3).map((p) => (
-                  <div key={p.id} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
-                    <CheckCircle2 size={14} color="#10b981" />
+                  <div key={p.id} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.88rem', color: 'var(--text-secondary)' }}>
+                    <CheckCircle2 size={15} color="#10b981" />
                     <strong style={{ color: 'var(--text-primary)' }}>{p.title}:</strong>
-                    <span>{p.category} ({p.techStack.slice(0, 3).join(', ')})</span>
+                    <span>{p.category}</span>
                   </div>
                 ))}
               </div>
             </div>
-
-            {/* Instructions box for PDF replacement */}
-            <div
-              style={{
-                padding: '0.85rem 1rem',
-                borderRadius: '0.75rem',
-                background: 'rgba(255, 255, 255, 0.02)',
-                border: '1px dashed var(--border-subtle)',
-                fontSize: '0.78rem',
-                color: 'var(--text-muted)',
-                lineHeight: 1.5,
-              }}
-            >
-              💡 <strong>Pro-Tip for Ruchika:</strong> Put your PDF file named <code>resume.pdf</code> into the <code>public/</code> folder, or paste your Google Drive link into <code>src/data/portfolioData.js</code> to enable instant direct downloads!
-            </div>
           </div>
 
-          {/* Action Buttons */}
+          {/* Action CTAs */}
           <div
             style={{
               display: 'flex',
-              gap: '0.75rem',
-              marginTop: '1.75rem',
-              paddingTop: '1.25rem',
+              gap: '1rem',
+              marginTop: '2rem',
+              paddingTop: '1.5rem',
               borderTop: '1px solid var(--border-subtle)',
             }}
           >
@@ -212,12 +222,20 @@ export default function ResumeModal({ isOpen, onClose }) {
               download="Ruchika_Patil_Resume.pdf"
               className="btn-primary"
               style={{ flex: 1, textDecoration: 'none' }}
-              onClick={() => {
-                // If local resume doesn't exist yet, fallback to alert or guide
-              }}
             >
-              <FileDown size={17} />
-              <span>Download Resume PDF</span>
+              <FileDown size={18} />
+              <span>Download Official Resume PDF</span>
+            </a>
+
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-secondary"
+              style={{ textDecoration: 'none' }}
+            >
+              <Eye size={17} />
+              <span>Open in New Tab</span>
             </a>
 
             <button onClick={onClose} className="btn-secondary">

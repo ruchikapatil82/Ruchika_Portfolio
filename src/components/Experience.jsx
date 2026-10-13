@@ -2,12 +2,12 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import {
   Briefcase,
-  Sparkles,
-  Award,
-  CheckCircle2,
+  Building2,
   Calendar,
   Layers,
-  Building2,
+  Award,
+  CheckCircle2,
+  ArrowRight,
   ExternalLink,
 } from 'lucide-react'
 import { portfolioData } from '../data/portfolioData'
@@ -16,24 +16,24 @@ export default function Experience() {
   const { experience } = portfolioData
 
   return (
-    <section id="experience" style={{ padding: '5rem 0', position: 'relative' }}>
+    <section id="experience" style={{ padding: '6rem 0', position: 'relative' }}>
       <div className="container-custom">
         {/* Section Header */}
         <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-          <div className="section-badge">
+          <div className="section-tag">
             <Briefcase size={14} />
-            <span>Professional Journey</span>
+            <span>Industry Exposure</span>
           </div>
-          <h2 className="section-title">
-            Internship <span className="gradient-brand-text">Experience</span>
+          <h2 className="section-heading">
+            Internship <span className="title-gradient">Milestones</span>
           </h2>
-          <p className="section-desc" style={{ margin: '0 auto' }}>
-            Hands-on industry engineering experience working with modern web workflows, agile milestones, and the MERN stack.
+          <p className="section-subheading" style={{ margin: '0 auto' }}>
+            Practical engineering experience at Sumago Infotech, Nashik — delivering React.js components and full-stack integration.
           </p>
         </div>
 
-        {/* Bento Layout for Internship */}
-        <div style={{ maxWidth: '950px', margin: '0 auto' }}>
+        {/* Experience Showcase Card */}
+        <div style={{ maxWidth: '980px', margin: '0 auto' }}>
           {experience.map((exp, idx) => (
             <motion.div
               key={idx}
@@ -41,62 +41,62 @@ export default function Experience() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="bento-card"
+              className="studio-card"
               style={{
-                padding: '2.5rem',
-                borderLeft: '4px solid var(--accent-purple)',
+                padding: '2.75rem',
+                borderLeft: '4px solid var(--accent-rose)',
               }}
             >
-              {/* Top Row: Role, Company & Badges */}
+              {/* Header Info */}
               <div
                 style={{
                   display: 'flex',
                   flexWrap: 'wrap',
                   alignItems: 'flex-start',
                   justifyContent: 'space-between',
-                  gap: '1rem',
-                  marginBottom: '1.25rem',
+                  gap: '1.25rem',
+                  marginBottom: '1.5rem',
                 }}
               >
                 <div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', marginBottom: '0.35rem' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.4rem' }}>
                     <div
                       style={{
-                        width: '38px',
-                        height: '38px',
-                        borderRadius: '10px',
-                        background: 'rgba(168, 85, 247, 0.15)',
+                        width: '42px',
+                        height: '42px',
+                        borderRadius: '12px',
+                        background: 'rgba(251, 113, 133, 0.15)',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
                       }}
                     >
-                      <Building2 size={20} color="#c084fc" />
+                      <Building2 size={22} color="#fb7185" />
                     </div>
                     <div>
-                      <h3 style={{ fontSize: '1.5rem', fontWeight: 700, letterSpacing: '-0.02em', lineHeight: 1.2 }}>
+                      <h3 style={{ fontSize: '1.65rem', fontWeight: 800, letterSpacing: '-0.02em', lineHeight: 1.2 }}>
                         {exp.role}
                       </h3>
-                      <div style={{ fontSize: '1.05rem', color: 'var(--accent-purple)', fontWeight: 600 }}>
-                        {exp.company}
+                      <div style={{ fontSize: '1.1rem', color: 'var(--accent-rose)', fontWeight: 700 }}>
+                        {exp.company} • {exp.location}
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', alignItems: 'center' }}>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.6rem', alignItems: 'center' }}>
                   <span
                     style={{
                       display: 'inline-flex',
                       alignItems: 'center',
-                      gap: '0.4rem',
-                      padding: '0.35rem 0.85rem',
+                      gap: '0.45rem',
+                      padding: '0.4rem 0.95rem',
                       borderRadius: '9999px',
-                      background: 'rgba(168, 85, 247, 0.12)',
-                      border: '1px solid rgba(168, 85, 247, 0.3)',
-                      fontSize: '0.8rem',
-                      fontWeight: 600,
-                      color: '#c084fc',
+                      background: 'rgba(251, 113, 133, 0.12)',
+                      border: '1px solid rgba(251, 113, 133, 0.3)',
+                      fontSize: '0.825rem',
+                      fontWeight: 700,
+                      color: 'var(--accent-rose)',
                     }}
                   >
                     <Layers size={13} />
@@ -107,12 +107,13 @@ export default function Experience() {
                     style={{
                       display: 'inline-flex',
                       alignItems: 'center',
-                      gap: '0.4rem',
-                      padding: '0.35rem 0.85rem',
+                      gap: '0.45rem',
+                      padding: '0.4rem 0.95rem',
                       borderRadius: '9999px',
-                      background: 'rgba(255, 255, 255, 0.05)',
+                      background: 'var(--bg-surface)',
                       border: '1px solid var(--border-subtle)',
-                      fontSize: '0.8rem',
+                      fontSize: '0.825rem',
+                      fontWeight: 600,
                       color: 'var(--text-secondary)',
                     }}
                   >
@@ -125,42 +126,58 @@ export default function Experience() {
               {/* Description */}
               <p
                 style={{
-                  fontSize: '1rem',
+                  fontSize: '1.05rem',
                   color: 'var(--text-secondary)',
-                  lineHeight: 1.75,
-                  marginBottom: '1.75rem',
+                  lineHeight: 1.8,
+                  marginBottom: '2rem',
                 }}
               >
                 {exp.description}
               </p>
 
-              {/* Achievements & Recognition Grid */}
+              {/* Achievements Highlight Strip */}
               <div
                 style={{
                   padding: '1.5rem',
                   borderRadius: '1.25rem',
-                  background: 'rgba(255, 255, 255, 0.02)',
+                  background: 'var(--bg-surface-elevated)',
                   border: '1px solid var(--border-subtle)',
                 }}
               >
                 <div
                   style={{
                     fontSize: '0.85rem',
-                    fontWeight: 700,
+                    fontWeight: 800,
                     textTransform: 'uppercase',
-                    letterSpacing: '0.05em',
-                    color: 'var(--accent-purple)',
+                    letterSpacing: '0.06em',
+                    color: 'var(--accent-rose)',
                     marginBottom: '1rem',
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '0.45rem',
+                    justifyContent: 'space-between',
                   }}
                 >
-                  <Award size={16} />
-                  <span>Key Recognitions & Highlights During Internship</span>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <Award size={16} />
+                    <span>Conferred Honors & Deliverables</span>
+                  </div>
+                  <a
+                    href="#achievements"
+                    style={{
+                      color: 'var(--accent-rose)',
+                      fontSize: '0.8rem',
+                      textDecoration: 'none',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.3rem',
+                    }}
+                  >
+                    <span>View Real Photos</span>
+                    <ArrowRight size={13} />
+                  </a>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '0.85rem' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '0.85rem' }}>
                   {exp.achievements.map((item, aIdx) => (
                     <div
                       key={aIdx}
@@ -168,16 +185,16 @@ export default function Experience() {
                         display: 'flex',
                         alignItems: 'flex-start',
                         gap: '0.65rem',
-                        fontSize: '0.9rem',
+                        fontSize: '0.92rem',
                         color: 'var(--text-primary)',
-                        padding: '0.75rem',
-                        borderRadius: '0.75rem',
-                        background: 'rgba(168, 85, 247, 0.06)',
-                        border: '1px solid rgba(168, 85, 247, 0.15)',
+                        padding: '0.85rem 1rem',
+                        borderRadius: '0.85rem',
+                        background: 'rgba(255, 255, 255, 0.02)',
+                        border: '1px solid var(--border-subtle)',
                       }}
                     >
-                      <CheckCircle2 size={17} color="#a855f7" style={{ flexShrink: 0, marginTop: '2px' }} />
-                      <span style={{ lineHeight: 1.45 }}>{item}</span>
+                      <CheckCircle2 size={16} color="#fb7185" style={{ flexShrink: 0, marginTop: '3px' }} />
+                      <span style={{ lineHeight: 1.5 }}>{item}</span>
                     </div>
                   ))}
                 </div>
