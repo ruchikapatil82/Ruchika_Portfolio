@@ -1,0 +1,56 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 1364 >>
+stream
+BT
+/F1 20 Tf
+50 780 Td (Ruchika Dilip Patil) Tj
+/F1 12 Tf
+0 -24 Td (Full Stack Developer | React Developer) Tj
+/F1 10 Tf
+0 -18 Td (Email: ruchikapatil82@gmail.com | Location: Maharashtra, India) Tj
+0 -14 Td (GitHub: https://github.com/ruchikapatil82 | Academic Merit: 90.35%) Tj
+0 -25 Td (EDUCATION) Tj
+0 -14 Td (Bachelor of Engineering in Computer Engineering - Direct Second Year) Tj
+0 -14 Td (R.C. Patel Institute of Technology, Shirpur | Merit: 90.35%) Tj
+0 -25 Td (EXPERIENCE) Tj
+0 -14 Td (Sumago Infotech - Full Stack Development Intern \(React / MERN Stack\)) Tj
+0 -14 Td (- Best Performer of the Month | Curious Catalyst Valedictory Award) Tj
+0 -25 Td (FEATURED PROJECTS) Tj
+0 -14 Td (- Museum Website: Full Stack Web App \(React, Node, Express, MongoDB\)) Tj
+0 -14 Td (- OBE Attainment Management System: Academic Tool \(Python, Django, SQLite, Pandas\)) Tj
+0 -14 Td (- VaultNest Password Manager: Security Web App \(Python, Flask, Werkzeug, SQLite\)) Tj
+0 -14 Td (- Student Attendance Management System: Desktop App \(Python, Tkinter, SQLite3\)) Tj
+0 -25 Td (CORE SKILLS) Tj
+0 -14 Td (Languages: C, C++, Python, JavaScript) Tj
+0 -14 Td (Frontend: React.js, JavaScript, HTML5, CSS3, Responsive Web Design) Tj
+0 -14 Td (Backend & DB: Node.js, Express.js, REST APIs, MongoDB, SQLite) Tj
+0 -14 Td (Tools: Git, GitHub, VS Code, Figma \(Learning UI/UX\)) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000227 00000 n 
+00000001650 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+1724
+%%EOF
