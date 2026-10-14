@@ -8,7 +8,7 @@ import {
   Award,
   CheckCircle2,
   ArrowRight,
-  ExternalLink,
+  QrCode,
 } from 'lucide-react'
 import { portfolioData } from '../data/portfolioData'
 
@@ -20,15 +20,15 @@ export default function Experience() {
       <div className="container-custom">
         {/* Section Header */}
         <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-          <div className="section-tag">
+          <div className="section-meta-tag">
             <Briefcase size={14} />
-            <span>Industry Exposure</span>
+            <span>Industrial Experience</span>
           </div>
-          <h2 className="section-heading">
-            Internship <span className="title-gradient">Milestones</span>
+          <h2 className="section-editorial-title">
+            Internship <span style={{ color: 'var(--accent-terracotta)', fontStyle: 'italic' }}>Milestones</span>
           </h2>
-          <p className="section-subheading" style={{ margin: '0 auto' }}>
-            Practical engineering experience at Sumago Infotech, Nashik — delivering React.js components and full-stack integration.
+          <p className="section-editorial-sub" style={{ margin: '0 auto' }}>
+            Hands-on 12-week industrial training at Sumago Infotech, Nashik — delivering React.js components, REST integrations, and earning two official honors.
           </p>
         </div>
 
@@ -41,10 +41,10 @@ export default function Experience() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="studio-card"
+              className="atelier-card"
               style={{
                 padding: '2.75rem',
-                borderLeft: '4px solid var(--accent-rose)',
+                borderLeft: '4px solid var(--accent-terracotta)',
               }}
             >
               {/* Header Info */}
@@ -62,63 +62,42 @@ export default function Experience() {
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.4rem' }}>
                     <div
                       style={{
-                        width: '42px',
-                        height: '42px',
-                        borderRadius: '12px',
-                        background: 'rgba(251, 113, 133, 0.15)',
+                        width: '44px',
+                        height: '44px',
+                        borderRadius: 'var(--radius-md)',
+                        background: 'rgba(224, 98, 77, 0.12)',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
                       }}
                     >
-                      <Building2 size={22} color="#fb7185" />
+                      <Building2 size={22} color="var(--accent-terracotta)" />
                     </div>
                     <div>
-                      <h3 style={{ fontSize: '1.65rem', fontWeight: 800, letterSpacing: '-0.02em', lineHeight: 1.2 }}>
+                      <h3 className="font-serif" style={{ fontSize: '1.75rem', fontWeight: 600, letterSpacing: '-0.02em', lineHeight: 1.2 }}>
                         {exp.role}
                       </h3>
-                      <div style={{ fontSize: '1.1rem', color: 'var(--accent-rose)', fontWeight: 700 }}>
-                        {exp.company} • {exp.location}
+                      <div style={{ fontSize: '1.05rem', color: 'var(--accent-terracotta)', fontWeight: 600 }}>
+                        {exp.company} ({exp.division}) • {exp.location}
                       </div>
                     </div>
                   </div>
                 </div>
 
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.6rem', alignItems: 'center' }}>
-                  <span
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '0.45rem',
-                      padding: '0.4rem 0.95rem',
-                      borderRadius: '9999px',
-                      background: 'rgba(251, 113, 133, 0.12)',
-                      border: '1px solid rgba(251, 113, 133, 0.3)',
-                      fontSize: '0.825rem',
-                      fontWeight: 700,
-                      color: 'var(--accent-rose)',
-                    }}
-                  >
+                  <span className="meta-pill meta-pill-accent">
                     <Layers size={13} />
-                    {exp.technology}
+                    <span>{exp.technology}</span>
                   </span>
 
-                  <span
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '0.45rem',
-                      padding: '0.4rem 0.95rem',
-                      borderRadius: '9999px',
-                      background: 'var(--bg-surface)',
-                      border: '1px solid var(--border-subtle)',
-                      fontSize: '0.825rem',
-                      fontWeight: 600,
-                      color: 'var(--text-secondary)',
-                    }}
-                  >
+                  <span className="meta-pill">
                     <Calendar size={13} />
-                    {exp.period}
+                    <span>{exp.period}</span>
+                  </span>
+
+                  <span className="meta-pill meta-pill-gold">
+                    <QrCode size={13} />
+                    <span>Cert No. {exp.certificateNo}</span>
                   </span>
                 </div>
               </div>
@@ -126,31 +105,31 @@ export default function Experience() {
               {/* Description */}
               <p
                 style={{
-                  fontSize: '1.05rem',
+                  fontSize: '1.02rem',
                   color: 'var(--text-secondary)',
-                  lineHeight: 1.8,
+                  lineHeight: 1.75,
                   marginBottom: '2rem',
                 }}
               >
                 {exp.description}
               </p>
 
-              {/* Achievements Highlight Strip */}
+              {/* Deliverables Highlight Strip */}
               <div
                 style={{
                   padding: '1.5rem',
-                  borderRadius: '1.25rem',
+                  borderRadius: 'var(--radius-md)',
                   background: 'var(--bg-surface-elevated)',
                   border: '1px solid var(--border-subtle)',
                 }}
               >
                 <div
                   style={{
-                    fontSize: '0.85rem',
-                    fontWeight: 800,
+                    fontSize: '0.825rem',
+                    fontWeight: 700,
                     textTransform: 'uppercase',
                     letterSpacing: '0.06em',
-                    color: 'var(--accent-rose)',
+                    color: 'var(--accent-terracotta)',
                     marginBottom: '1rem',
                     display: 'flex',
                     alignItems: 'center',
@@ -159,12 +138,12 @@ export default function Experience() {
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                     <Award size={16} />
-                    <span>Conferred Honors & Deliverables</span>
+                    <span>Official Training Deliverables & Recognitions</span>
                   </div>
                   <a
-                    href="#achievements"
+                    href="#certificates"
                     style={{
-                      color: 'var(--accent-rose)',
+                      color: 'var(--accent-terracotta)',
                       fontSize: '0.8rem',
                       textDecoration: 'none',
                       display: 'flex',
@@ -172,28 +151,28 @@ export default function Experience() {
                       gap: '0.3rem',
                     }}
                   >
-                    <span>View Real Photos</span>
+                    <span>View Certificate & Medals</span>
                     <ArrowRight size={13} />
                   </a>
                 </div>
 
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '0.85rem' }}>
-                  {exp.achievements.map((item, aIdx) => (
+                  {exp.deliverables.map((item, dIdx) => (
                     <div
-                      key={aIdx}
+                      key={dIdx}
                       style={{
                         display: 'flex',
                         alignItems: 'flex-start',
                         gap: '0.65rem',
-                        fontSize: '0.92rem',
+                        fontSize: '0.9rem',
                         color: 'var(--text-primary)',
                         padding: '0.85rem 1rem',
-                        borderRadius: '0.85rem',
+                        borderRadius: 'var(--radius-sm)',
                         background: 'rgba(255, 255, 255, 0.02)',
                         border: '1px solid var(--border-subtle)',
                       }}
                     >
-                      <CheckCircle2 size={16} color="#fb7185" style={{ flexShrink: 0, marginTop: '3px' }} />
+                      <CheckCircle2 size={16} color="var(--accent-terracotta)" style={{ flexShrink: 0, marginTop: '3px' }} />
                       <span style={{ lineHeight: 1.5 }}>{item}</span>
                     </div>
                   ))}

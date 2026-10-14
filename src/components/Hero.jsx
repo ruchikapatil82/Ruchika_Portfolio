@@ -1,16 +1,15 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import {
-  Sparkles,
   ArrowRight,
+  FileDown,
   Mail,
   Phone,
-  FileDown,
   MapPin,
-  CheckCircle2,
   Award,
+  Sparkles,
+  CheckCircle2,
   ExternalLink,
-  Code2,
 } from 'lucide-react'
 import { GithubIcon, LinkedinIcon } from './BrandIcons'
 import { portfolioData } from '../data/portfolioData'
@@ -19,84 +18,71 @@ export default function Hero({ onOpenResume, onCopyEmail }) {
   const { personal, stats } = portfolioData
 
   return (
-    <section id="home" style={{ paddingTop: '8rem', paddingBottom: '4rem', position: 'relative' }}>
+    <section id="home" style={{ paddingTop: '8.5rem', paddingBottom: '4.5rem', position: 'relative' }}>
       <div className="container-custom">
-        {/* Main Editorial Hero Grid */}
+        {/* Main Editorial Grid */}
         <div
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(12, 1fr)',
-            gap: '2rem',
+            gap: '2.5rem',
             alignItems: 'center',
           }}
         >
-          {/* Left Column: Introduction & Credentials (Spans 7 cols on desktop) */}
+          {/* Left Text Column (Spans 7 cols on desktop) */}
           <motion.div
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            style={{
-              gridColumn: 'span 12',
-            }}
-            className="hero-text-col"
+            transition={{ duration: 0.55 }}
+            style={{ gridColumn: 'span 12' }}
+            className="hero-col-text"
           >
-            {/* Status & Location Pill */}
-            <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '1.5rem' }}>
+            {/* Editorial Status Tag */}
+            <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '1.75rem' }}>
               <div
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '0.55rem',
-                  padding: '0.45rem 1rem',
-                  borderRadius: '9999px',
-                  background: 'rgba(16, 185, 129, 0.12)',
-                  border: '1px solid rgba(16, 185, 129, 0.35)',
-                  fontSize: '0.85rem',
+                  padding: '0.4rem 0.95rem',
+                  borderRadius: 'var(--radius-pill)',
+                  background: 'rgba(46, 184, 114, 0.1)',
+                  border: '1px solid rgba(46, 184, 114, 0.3)',
+                  fontSize: '0.825rem',
                   fontWeight: 600,
-                  color: '#10b981',
+                  color: 'var(--accent-sage)',
                 }}
               >
-                <span className="live-pulse"></span>
+                <span className="status-indicator-live"></span>
                 <span>{personal.status}</span>
               </div>
 
-              <div
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.4rem',
-                  padding: '0.45rem 0.95rem',
-                  borderRadius: '9999px',
-                  background: 'var(--bg-surface)',
-                  border: '1px solid var(--border-subtle)',
-                  fontSize: '0.85rem',
-                  color: 'var(--text-secondary)',
-                }}
-              >
-                <MapPin size={14} color="#fb7185" />
+              <div className="meta-pill">
+                <MapPin size={13} color="var(--accent-terracotta)" />
                 <span>{personal.location}</span>
               </div>
             </div>
 
-            {/* Main Headline */}
+            {/* Editorial Headline */}
             <h1
+              className="font-serif"
               style={{
-                fontSize: 'clamp(2.4rem, 5.2vw, 4.2rem)',
-                fontWeight: 800,
-                letterSpacing: '-0.04em',
-                lineHeight: 1.12,
-                marginBottom: '1rem',
+                fontSize: 'clamp(2.75rem, 5.5vw, 4.4rem)',
+                fontWeight: 500,
+                letterSpacing: '-0.025em',
+                lineHeight: 1.1,
+                marginBottom: '1.25rem',
               }}
             >
-              Hi, I'm <span className="title-gradient">{personal.name}</span>
+              Ruchika Dilip Patil
             </h1>
 
-            {/* Specialization Subheading */}
+            {/* Specialization Tagline */}
             <div
               style={{
-                fontSize: 'clamp(1.15rem, 2.2vw, 1.45rem)',
-                fontWeight: 700,
-                color: 'var(--accent-rose)',
+                fontSize: 'clamp(1.15rem, 2vw, 1.35rem)',
+                fontWeight: 600,
+                color: 'var(--accent-terracotta)',
                 marginBottom: '1.25rem',
                 display: 'flex',
                 alignItems: 'center',
@@ -110,39 +96,39 @@ export default function Hero({ onOpenResume, onCopyEmail }) {
             {/* Bio Prose */}
             <p
               style={{
-                fontSize: 'clamp(1.02rem, 1.4vw, 1.15rem)',
+                fontSize: 'clamp(1.02rem, 1.3vw, 1.15rem)',
                 color: 'var(--text-secondary)',
-                lineHeight: 1.7,
+                lineHeight: 1.75,
                 maxWidth: '640px',
-                marginBottom: '2rem',
+                marginBottom: '2.25rem',
               }}
             >
               {personal.tagline}
             </p>
 
-            {/* Primary CTAs */}
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.85rem', alignItems: 'center', marginBottom: '2.25rem' }}>
-              <a href="#projects" className="btn-primary">
-                <span>View Projects</span>
-                <ArrowRight size={17} />
+            {/* Action Buttons */}
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.9rem', alignItems: 'center', marginBottom: '2.5rem' }}>
+              <a href="#projects" className="btn-editorial-primary">
+                <span>View Case Studies</span>
+                <ArrowRight size={16} />
               </a>
 
               <a
                 href={personal.resumeUrl}
                 download="Ruchika_Patil_Resume.pdf"
-                className="btn-gold"
+                className="btn-editorial-secondary"
               >
-                <FileDown size={17} />
-                <span>Download Resume</span>
+                <FileDown size={16} />
+                <span>Download Resume (PDF)</span>
               </a>
 
-              <a href="#achievements" className="btn-secondary">
-                <Award size={17} />
-                <span>Award Photos</span>
+              <a href="#certificates" className="btn-editorial-secondary">
+                <Award size={16} />
+                <span>Verified Certificates</span>
               </a>
             </div>
 
-            {/* Direct Contact & Social Links Bar */}
+            {/* Direct Contact Bar */}
             <div
               style={{
                 display: 'flex',
@@ -168,10 +154,10 @@ export default function Hero({ onOpenResume, onCopyEmail }) {
                   padding: 0,
                   transition: 'color 0.2s',
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = '#fb7185')}
+                onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--accent-terracotta)')}
                 onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-secondary)')}
               >
-                <Mail size={16} />
+                <Mail size={15} />
                 <span>{personal.email}</span>
               </button>
 
@@ -187,10 +173,10 @@ export default function Hero({ onOpenResume, onCopyEmail }) {
                   textDecoration: 'none',
                   transition: 'color 0.2s',
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = '#fb7185')}
+                onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--accent-terracotta)')}
                 onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-secondary)')}
               >
-                <Phone size={16} />
+                <Phone size={15} />
                 <span>{personal.phone}</span>
               </a>
 
@@ -208,7 +194,7 @@ export default function Hero({ onOpenResume, onCopyEmail }) {
                   textDecoration: 'none',
                   transition: 'color 0.2s',
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = '#fb7185')}
+                onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--accent-terracotta)')}
                 onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-secondary)')}
               >
                 <GithubIcon size={16} />
@@ -229,7 +215,7 @@ export default function Hero({ onOpenResume, onCopyEmail }) {
                   textDecoration: 'none',
                   transition: 'color 0.2s',
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = '#fb7185')}
+                onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--accent-terracotta)')}
                 onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-secondary)')}
               >
                 <LinkedinIcon size={16} />
@@ -238,57 +224,35 @@ export default function Hero({ onOpenResume, onCopyEmail }) {
             </div>
           </motion.div>
 
-          {/* Right Column: High-Res Portrait in Studio Frame (Spans 5 cols on desktop) */}
+          {/* Right Portrait Column (Spans 5 cols on desktop) */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.15 }}
             style={{
               gridColumn: 'span 12',
               display: 'flex',
               justifyContent: 'center',
-              position: 'relative',
             }}
-            className="hero-image-col"
+            className="hero-col-portrait"
           >
-            <div
-              style={{
-                position: 'relative',
-                width: '100%',
-                maxWidth: '400px',
-              }}
-            >
-              {/* Studio Backdrop Glow */}
+            <div style={{ position: 'relative', width: '100%', maxWidth: '390px' }}>
+              {/* Refined Gallery Frame */}
               <div
                 style={{
-                  position: 'absolute',
-                  inset: '-15px',
-                  borderRadius: '2.5rem',
-                  background: 'linear-gradient(135deg, rgba(251, 113, 133, 0.45), rgba(245, 158, 11, 0.35), rgba(168, 85, 247, 0.3))',
-                  filter: 'blur(25px)',
-                  opacity: 0.6,
-                  zIndex: 0,
-                }}
-              ></div>
-
-              {/* Portrait Container */}
-              <div
-                style={{
-                  position: 'relative',
-                  borderRadius: '2.25rem',
-                  padding: '8px',
-                  background: 'linear-gradient(145deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.03))',
+                  borderRadius: 'var(--radius-xl)',
+                  padding: '6px',
+                  background: 'var(--bg-surface-elevated)',
                   border: '1px solid var(--border-medium)',
-                  boxShadow: '0 25px 60px -15px rgba(0, 0, 0, 0.8)',
-                  zIndex: 1,
+                  boxShadow: 'var(--shadow-elevated)',
                   overflow: 'hidden',
                 }}
               >
                 <div
                   style={{
-                    borderRadius: '1.85rem',
+                    borderRadius: '1.45rem',
                     overflow: 'hidden',
-                    background: '#12141c',
+                    background: '#12151e',
                     position: 'relative',
                   }}
                 >
@@ -301,74 +265,68 @@ export default function Hero({ onOpenResume, onCopyEmail }) {
                       objectFit: 'cover',
                       objectPosition: 'center 15%',
                       display: 'block',
-                      transition: 'transform 0.5s ease',
                     }}
                   />
 
-                  {/* Gradient Overlay at Bottom */}
+                  {/* Gradient Shadow Vignette */}
                   <div
                     style={{
                       position: 'absolute',
                       bottom: 0,
                       left: 0,
                       right: 0,
-                      height: '110px',
-                      background: 'linear-gradient(to top, rgba(9, 10, 15, 0.95), transparent)',
+                      height: '100px',
+                      background: 'linear-gradient(to top, rgba(10, 12, 16, 0.92), transparent)',
                       pointerEvents: 'none',
                     }}
                   ></div>
 
-                  {/* Bottom Portrait Floating Badge */}
+                  {/* Identification Pill */}
                   <div
                     style={{
                       position: 'absolute',
-                      bottom: '1.25rem',
-                      left: '1.25rem',
-                      right: '1.25rem',
-                      padding: '0.85rem 1.15rem',
-                      borderRadius: '1rem',
-                      background: 'rgba(15, 17, 24, 0.88)',
-                      backdropFilter: 'blur(16px)',
-                      border: '1px solid rgba(255, 255, 255, 0.1)',
+                      bottom: '1rem',
+                      left: '1rem',
+                      right: '1rem',
+                      padding: '0.85rem 1rem',
+                      borderRadius: 'var(--radius-md)',
+                      background: 'rgba(15, 18, 24, 0.92)',
+                      backdropFilter: 'blur(12px)',
+                      border: '1px solid rgba(255, 255, 255, 0.08)',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'space-between',
                     }}
                   >
                     <div>
-                      <div style={{ fontWeight: 700, fontSize: '0.95rem', color: '#ffffff' }}>
+                      <div style={{ fontWeight: 700, fontSize: '0.92rem', color: '#ffffff' }}>
                         {personal.fullName}
                       </div>
-                      <div style={{ fontSize: '0.78rem', color: 'var(--accent-rose)', fontWeight: 600 }}>
+                      <div style={{ fontSize: '0.78rem', color: 'var(--accent-terracotta)', fontWeight: 600 }}>
                         Computer Engineering @ RCPIT
                       </div>
                     </div>
-                    <div
+                    <span
                       style={{
-                        padding: '0.35rem 0.65rem',
+                        padding: '0.25rem 0.6rem',
                         borderRadius: '9999px',
-                        background: 'rgba(16, 185, 129, 0.15)',
-                        border: '1px solid rgba(16, 185, 129, 0.35)',
-                        color: '#10b981',
+                        background: 'rgba(46, 184, 114, 0.15)',
+                        border: '1px solid rgba(46, 184, 114, 0.3)',
+                        color: 'var(--accent-sage)',
                         fontSize: '0.75rem',
                         fontWeight: 700,
                       }}
                     >
                       Verified
-                    </div>
+                    </span>
                   </div>
                 </div>
               </div>
             </div>
           </motion.div>
 
-          {/* Stats Row Below (4 high-impact cards) */}
-          <div
-            style={{
-              gridColumn: 'span 12',
-              marginTop: '1.5rem',
-            }}
-          >
+          {/* Academic & Experience Key Metrics Strip */}
+          <div style={{ gridColumn: 'span 12', marginTop: '1rem' }}>
             <div
               style={{
                 display: 'grid',
@@ -376,18 +334,17 @@ export default function Hero({ onOpenResume, onCopyEmail }) {
                 gap: '1.25rem',
               }}
             >
-              {stats.map((stat, idx) => (
+              {stats.map((stat, sIdx) => (
                 <motion.div
                   key={stat.label}
-                  initial={{ opacity: 0, y: 18 }}
+                  initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 0.3 + idx * 0.08 }}
-                  className="studio-card"
+                  transition={{ duration: 0.4, delay: 0.3 + sIdx * 0.08 }}
+                  className="atelier-card"
                   style={{
                     padding: '1.5rem 1.75rem',
-                    borderLeft: `3px solid ${
-                      idx === 0 ? '#fb7185' : idx === 1 ? '#f59e0b' : idx === 2 ? '#38bdf8' : '#a855f7'
-                    }`,
+                    borderLeft: `3px solid ${sIdx === 0 ? 'var(--accent-terracotta)' : sIdx === 1 ? 'var(--accent-gold)' : sIdx === 2 ? 'var(--accent-sage)' : 'var(--accent-slate)'
+                      }`,
                   }}
                 >
                   <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.45rem', marginBottom: '0.35rem' }}>
@@ -402,11 +359,11 @@ export default function Hero({ onOpenResume, onCopyEmail }) {
                     >
                       {stat.value}
                     </span>
-                    <span style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--accent-rose)' }}>
+                    <span style={{ fontSize: '0.88rem', fontWeight: 700, color: 'var(--accent-terracotta)' }}>
                       {stat.unit}
                     </span>
                   </div>
-                  <div style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--text-primary)' }}>
+                  <div style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--text-primary)' }}>
                     {stat.label}
                   </div>
                   <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>
@@ -421,10 +378,10 @@ export default function Hero({ onOpenResume, onCopyEmail }) {
 
       <style>{`
         @media (min-width: 960px) {
-          .hero-text-col {
+          .hero-col-text {
             grid-column: span 7 !important;
           }
-          .hero-image-col {
+          .hero-col-portrait {
             grid-column: span 5 !important;
           }
         }

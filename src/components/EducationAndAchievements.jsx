@@ -4,143 +4,155 @@ import {
   Award,
   Trophy,
   Medal,
-  Sparkles,
   GraduationCap,
-  Calendar,
-  CheckCircle2,
+  Sparkles,
   Maximize2,
   X,
-  ExternalLink,
+  CheckCircle2,
   BookOpen,
+  Calendar,
+  FileCheck,
+  Eye,
+  QrCode,
 } from 'lucide-react'
 import { portfolioData } from '../data/portfolioData'
 
 export default function EducationAndAchievements() {
-  const { education, achievementGallery, otherCertifications } = portfolioData
-  const [selectedImage, setSelectedImage] = useState(null)
+  const { education, verifiedProofGallery, otherCertifications } = portfolioData
+  const [activeCategory, setActiveCategory] = useState('all')
+  const [selectedProof, setSelectedProof] = useState(null)
+
+  const filterTabs = [
+    { id: 'all', label: 'All Verified Proofs (4)' },
+    { id: 'certificates', label: 'Official Certificates (2)' },
+    { id: 'honors', label: 'Stage & Medal Honors (2)' },
+  ]
+
+  const filteredProofs = verifiedProofGallery.filter((item) => {
+    if (activeCategory === 'all') return true
+    if (activeCategory === 'certificates') return item.category.includes('Certificate') || item.category.includes('Competition')
+    if (activeCategory === 'honors') return item.category.includes('Stage') || item.category.includes('Performance')
+    return true
+  })
 
   return (
-    <section id="achievements" style={{ padding: '6rem 0', position: 'relative' }}>
+    <section id="certificates" style={{ padding: '6.5rem 0', position: 'relative' }}>
       <div className="container-custom">
         {/* Section Header */}
         <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-          <div className="section-tag">
-            <Trophy size={14} />
-            <span>Verified Honors & Proof</span>
+          <div className="section-meta-tag">
+            <Award size={14} />
+            <span>Official Credentials & Documentation</span>
           </div>
-          <h2 className="section-heading">
-            Honors, Awards & <span className="title-gradient">Photographic Proof</span>
+          <h2 className="section-editorial-title">
+            Certificates, Honors & <span style={{ color: 'var(--accent-terracotta)', fontStyle: 'italic' }}>Verified Proof</span>
           </h2>
-          <p className="section-subheading" style={{ margin: '0 auto' }}>
-            Real recognition from Sumago Infotech internship, academic merit milestones, and competitive programming achievements.
+          <p className="section-editorial-sub" style={{ margin: '0 auto' }}>
+            Tangible photographic evidence of industry certifications, state-level competition awards, and academic distinction.
           </p>
-        </div>
 
-        {/* 🌟 1. REAL ACHIEVEMENT PHOTO SHOWCASE (The Star Feature) 🌟 */}
-        <div style={{ marginBottom: '4rem' }}>
+          {/* Gallery Category Filter Tabs */}
           <div
             style={{
               display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              marginBottom: '1.5rem',
+              flexWrap: 'wrap',
+              justifyContent: 'center',
+              gap: '0.65rem',
+              marginTop: '2.25rem',
             }}
           >
-            <div>
-              <h3 style={{ fontSize: '1.45rem', fontWeight: 800, letterSpacing: '-0.02em' }}>
-                Internship Honors Spotlight
-              </h3>
-              <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)' }}>
-                Photographic evidence of medals and stage felicitations conferred at Sumago Infotech, Nashik.
-              </p>
-            </div>
-            <span
-              style={{
-                fontSize: '0.78rem',
-                fontWeight: 700,
-                padding: '0.3rem 0.75rem',
-                borderRadius: '9999px',
-                background: 'rgba(245, 158, 11, 0.12)',
-                color: '#f59e0b',
-                border: '1px solid rgba(245, 158, 11, 0.3)',
-              }}
-            >
-              2 Official Honors
-            </span>
+            {filterTabs.map((tab) => {
+              const isActive = activeCategory === tab.id
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveCategory(tab.id)}
+                  style={{
+                    padding: '0.5rem 1.25rem',
+                    borderRadius: 'var(--radius-pill)',
+                    border: '1px solid',
+                    borderColor: isActive ? 'var(--accent-terracotta)' : 'var(--border-subtle)',
+                    background: isActive ? 'rgba(224, 98, 77, 0.12)' : 'var(--bg-surface)',
+                    color: isActive ? 'var(--accent-terracotta)' : 'var(--text-secondary)',
+                    fontSize: '0.85rem',
+                    fontWeight: 600,
+                    cursor: 'pointer',
+                    transition: 'all 0.25s',
+                  }}
+                >
+                  {tab.label}
+                </button>
+              )
+            })}
           </div>
+        </div>
 
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-              gap: '1.75rem',
-            }}
-          >
-            {achievementGallery.map((item, idx) => (
+        {/* 🌟 1. INTERACTIVE FULL-SIZE CERTIFICATE & PROOF GALLERY (4 CARDS) */}
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+            gap: '1.75rem',
+            marginBottom: '4.5rem',
+          }}
+        >
+          <AnimatePresence>
+            {filteredProofs.map((proof, idx) => (
               <motion.div
-                key={item.id}
-                initial={{ opacity: 0, y: 25 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.15 }}
-                className="proof-photo-card"
-                onClick={() => setSelectedImage(item)}
-                style={{ cursor: 'pointer' }}
+                key={proof.id}
+                layout
+                initial={{ opacity: 0, scale: 0.96 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.96 }}
+                transition={{ duration: 0.35, delay: idx * 0.08 }}
+                className="proof-frame"
+                onClick={() => setSelectedProof(proof)}
               >
-                {/* Photo with Overlay */}
+                {/* Photo Container */}
                 <div style={{ position: 'relative', overflow: 'hidden' }}>
                   <img
-                    src={item.image}
-                    alt={item.title}
-                    className="proof-photo-img"
+                    src={proof.image}
+                    alt={proof.title}
+                    className="proof-frame-img"
                     style={{
-                      height: '340px',
-                      objectPosition: idx === 0 ? 'center center' : 'center 20%',
+                      height: proof.aspect === 'portrait' ? '310px' : '230px',
+                      objectPosition: proof.aspect === 'portrait' ? 'center top' : 'center center',
                     }}
                   />
-
-                  {/* Gradient Overlay */}
-                  <div
-                    style={{
-                      position: 'absolute',
-                      inset: 0,
-                      background: 'linear-gradient(to top, rgba(9, 10, 15, 0.95) 0%, rgba(9, 10, 15, 0.2) 60%, transparent 100%)',
-                    }}
-                  ></div>
 
                   {/* Top Badge */}
                   <div
                     style={{
                       position: 'absolute',
-                      top: '1rem',
-                      left: '1rem',
-                      padding: '0.35rem 0.85rem',
-                      borderRadius: '9999px',
-                      background: 'rgba(9, 10, 15, 0.85)',
+                      top: '0.85rem',
+                      left: '0.85rem',
+                      padding: '0.3rem 0.75rem',
+                      borderRadius: 'var(--radius-pill)',
+                      background: 'rgba(10, 12, 16, 0.88)',
                       backdropFilter: 'blur(10px)',
                       border: '1px solid rgba(255, 255, 255, 0.15)',
-                      fontSize: '0.78rem',
+                      fontSize: '0.75rem',
                       fontWeight: 700,
-                      color: idx === 0 ? '#fbbf24' : '#fb7185',
+                      color: proof.badge.includes('Gold') ? '#fbbf24' : 'var(--accent-terracotta)',
                       display: 'flex',
                       alignItems: 'center',
                       gap: '0.4rem',
                     }}
                   >
-                    {idx === 0 ? <Medal size={14} color="#fbbf24" /> : <Sparkles size={14} color="#fb7185" />}
-                    <span>{item.badge}</span>
+                    {proof.badge.includes('Gold') ? <Medal size={13} color="#fbbf24" /> : <FileCheck size={13} />}
+                    <span>{proof.badge}</span>
                   </div>
 
-                  {/* Click to Zoom Pill */}
+                  {/* Zoom Pill Button */}
                   <div
                     style={{
                       position: 'absolute',
-                      top: '1rem',
-                      right: '1rem',
-                      width: '34px',
-                      height: '34px',
+                      top: '0.85rem',
+                      right: '0.85rem',
+                      width: '32px',
+                      height: '32px',
                       borderRadius: '50%',
-                      background: 'rgba(9, 10, 15, 0.8)',
+                      background: 'rgba(10, 12, 16, 0.8)',
                       backdropFilter: 'blur(10px)',
                       border: '1px solid rgba(255, 255, 255, 0.15)',
                       display: 'flex',
@@ -149,68 +161,57 @@ export default function EducationAndAchievements() {
                       color: '#ffffff',
                     }}
                   >
-                    <Maximize2 size={15} />
-                  </div>
-
-                  {/* Bottom Captions Overlay */}
-                  <div
-                    style={{
-                      position: 'absolute',
-                      bottom: '1.25rem',
-                      left: '1.25rem',
-                      right: '1.25rem',
-                    }}
-                  >
-                    <h4 style={{ fontSize: '1.35rem', fontWeight: 800, color: '#ffffff', marginBottom: '0.35rem', lineHeight: 1.2 }}>
-                      {item.title}
-                    </h4>
-                    <div style={{ fontSize: '0.85rem', color: 'var(--accent-rose)', fontWeight: 600, marginBottom: '0.35rem' }}>
-                      {item.issuer} • {item.date}
-                    </div>
-                    <p style={{ fontSize: '0.825rem', color: '#cbd5e1', lineHeight: 1.45 }}>
-                      {item.highlight}
-                    </p>
+                    <Maximize2 size={14} />
                   </div>
                 </div>
 
-                {/* Card Footer Bar */}
-                <div
-                  style={{
-                    padding: '1rem 1.25rem',
-                    background: 'var(--bg-surface-elevated)',
-                    borderTop: '1px solid var(--border-subtle)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                  }}
-                >
-                  <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
-                    Official Sumago Infotech Certificate & Trophy
-                  </span>
-                  <span
+                {/* Details Footer */}
+                <div style={{ padding: '1.5rem', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                  <div>
+                    <div style={{ fontSize: '0.78rem', color: 'var(--accent-terracotta)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '0.35rem' }}>
+                      {proof.category} • {proof.date}
+                    </div>
+
+                    <h4 className="font-serif" style={{ fontSize: '1.25rem', fontWeight: 600, lineHeight: 1.3, marginBottom: '0.65rem' }}>
+                      {proof.title}
+                    </h4>
+
+                    <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '0.85rem' }}>
+                      {proof.issuer}
+                    </div>
+                  </div>
+
+                  {/* Bottom Action Hint */}
+                  <div
                     style={{
-                      fontSize: '0.825rem',
-                      fontWeight: 700,
-                      color: 'var(--accent-rose)',
+                      paddingTop: '0.85rem',
+                      borderTop: '1px solid var(--border-subtle)',
                       display: 'flex',
                       alignItems: 'center',
-                      gap: '0.3rem',
+                      justifyContent: 'space-between',
+                      fontSize: '0.8rem',
+                      color: 'var(--text-muted)',
                     }}
                   >
-                    View Full Image <Maximize2 size={13} />
-                  </span>
+                    <span>Click to view full preview</span>
+                    <span style={{ color: 'var(--accent-terracotta)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                      Zoom <Eye size={13} />
+                    </span>
+                  </div>
                 </div>
               </motion.div>
             ))}
-          </div>
+          </AnimatePresence>
         </div>
 
-        {/* 🎓 2. ACADEMIC JOURNEY & MERIT TIMELINE */}
-        <div style={{ marginBottom: '4rem' }}>
-          <h3 style={{ fontSize: '1.45rem', fontWeight: 800, letterSpacing: '-0.02em', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-            <GraduationCap size={22} color="#fb7185" />
-            <span>Academic Excellence & Progression</span>
-          </h3>
+        {/* 🎓 2. ACADEMIC DISTINCTION PROGRESSION */}
+        <div style={{ marginBottom: '4.5rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', marginBottom: '1.75rem' }}>
+            <GraduationCap size={22} color="var(--accent-terracotta)" />
+            <h3 className="font-serif" style={{ fontSize: '1.75rem', fontWeight: 600 }}>
+              Academic Foundation & Distinction
+            </h3>
+          </div>
 
           <div
             style={{
@@ -222,30 +223,27 @@ export default function EducationAndAchievements() {
             {education.map((edu, eIdx) => (
               <motion.div
                 key={edu.degree}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.45, delay: eIdx * 0.1 }}
-                className="studio-card"
+                transition={{ duration: 0.4, delay: eIdx * 0.1 }}
+                className="atelier-card"
                 style={{
+                  padding: '2rem',
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
-                  padding: '2rem',
                 }}
               >
                 <div>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
                     <span
+                      className="meta-pill"
                       style={{
-                        fontSize: '0.75rem',
+                        background: eIdx === 1 ? 'rgba(221, 168, 67, 0.12)' : 'rgba(255, 255, 255, 0.04)',
+                        borderColor: eIdx === 1 ? 'rgba(221, 168, 67, 0.3)' : 'var(--border-subtle)',
+                        color: eIdx === 1 ? 'var(--accent-gold)' : 'var(--text-secondary)',
                         fontWeight: 700,
-                        padding: '0.25rem 0.65rem',
-                        borderRadius: '9999px',
-                        background: eIdx === 1 ? 'rgba(245, 158, 11, 0.15)' : 'rgba(255, 255, 255, 0.05)',
-                        border: '1px solid',
-                        borderColor: eIdx === 1 ? 'rgba(245, 158, 11, 0.35)' : 'var(--border-subtle)',
-                        color: eIdx === 1 ? '#fbbf24' : 'var(--text-secondary)',
                       }}
                     >
                       {edu.badge}
@@ -255,25 +253,29 @@ export default function EducationAndAchievements() {
                     </span>
                   </div>
 
-                  <h4 style={{ fontSize: '1.2rem', fontWeight: 800, marginBottom: '0.35rem', lineHeight: 1.3 }}>
+                  <h4 className="font-serif" style={{ fontSize: '1.35rem', fontWeight: 600, lineHeight: 1.3, marginBottom: '0.35rem' }}>
                     {edu.degree}
                   </h4>
 
-                  <div style={{ fontSize: '0.95rem', color: 'var(--accent-rose)', fontWeight: 600, marginBottom: '0.25rem' }}>
+                  <div style={{ fontSize: '0.95rem', color: 'var(--accent-terracotta)', fontWeight: 600, marginBottom: '0.25rem' }}>
                     {edu.institution}
                   </div>
 
-                  <div style={{ fontSize: '0.825rem', color: 'var(--text-muted)', marginBottom: '1.5rem' }}>
+                  <div style={{ fontSize: '0.825rem', color: 'var(--text-muted)', marginBottom: '1.25rem' }}>
                     {edu.location}
                   </div>
+
+                  <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '1.5rem' }}>
+                    {edu.scoreDetail}
+                  </p>
                 </div>
 
-                {/* Score Pill Banner */}
+                {/* Score Pill */}
                 <div
                   style={{
-                    padding: '1rem 1.25rem',
-                    borderRadius: '1rem',
-                    background: 'rgba(255, 255, 255, 0.03)',
+                    padding: '0.95rem 1.25rem',
+                    borderRadius: 'var(--radius-md)',
+                    background: 'var(--bg-surface-elevated)',
                     border: '1px solid var(--border-subtle)',
                     display: 'flex',
                     alignItems: 'center',
@@ -281,25 +283,25 @@ export default function EducationAndAchievements() {
                   }}
                 >
                   <div>
-                    <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                      {edu.scoreLabel}
+                    <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                      Official Score
                     </div>
-                    <div style={{ fontSize: '1.45rem', fontWeight: 800, color: '#ffffff' }}>
+                    <div style={{ fontSize: '1.4rem', fontWeight: 800, color: '#ffffff' }}>
                       {edu.score}
                     </div>
                   </div>
                   <div
                     style={{
-                      width: '38px',
-                      height: '38px',
+                      width: '36px',
+                      height: '36px',
                       borderRadius: '10px',
-                      background: 'rgba(251, 113, 133, 0.15)',
+                      background: 'rgba(224, 98, 77, 0.12)',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                     }}
                   >
-                    <BookOpen size={18} color="#fb7185" />
+                    <BookOpen size={17} color="var(--accent-terracotta)" />
                   </div>
                 </div>
               </motion.div>
@@ -307,12 +309,14 @@ export default function EducationAndAchievements() {
           </div>
         </div>
 
-        {/* 📜 3. OTHER VERIFIED CERTIFICATES & PARTICIPATIONS */}
+        {/* 📜 3. ADDITIONAL TECHNICAL WORKSHOPS & CERTIFICATES */}
         <div>
-          <h3 style={{ fontSize: '1.45rem', fontWeight: 800, letterSpacing: '-0.02em', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-            <Award size={22} color="#f59e0b" />
-            <span>Additional Certifications & Participations</span>
-          </h3>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', marginBottom: '1.5rem' }}>
+            <Sparkles size={20} color="var(--accent-gold)" />
+            <h3 className="font-serif" style={{ fontSize: '1.5rem', fontWeight: 600 }}>
+              Technical Symposiums & Active Participations
+            </h3>
+          </div>
 
           <div
             style={{
@@ -321,44 +325,44 @@ export default function EducationAndAchievements() {
               gap: '1.25rem',
             }}
           >
-            {otherCertifications.map((cert, cIdx) => (
+            {otherCertifications.map((item, idx) => (
               <motion.div
-                key={cert.title}
-                initial={{ opacity: 0, y: 15 }}
+                key={item.title}
+                initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.35, delay: cIdx * 0.06 }}
-                className="studio-card"
+                transition={{ duration: 0.3, delay: idx * 0.05 }}
+                className="atelier-card"
                 style={{
-                  padding: '1.4rem',
+                  padding: '1.35rem',
                   display: 'flex',
                   alignItems: 'flex-start',
-                  gap: '0.9rem',
+                  gap: '0.85rem',
                 }}
               >
                 <div
                   style={{
-                    width: '40px',
-                    height: '40px',
-                    borderRadius: '12px',
-                    background: 'rgba(251, 113, 133, 0.12)',
+                    width: '38px',
+                    height: '38px',
+                    borderRadius: '10px',
+                    background: 'rgba(224, 98, 77, 0.12)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     flexShrink: 0,
                   }}
                 >
-                  <Award size={18} color="#fb7185" />
+                  <Award size={18} color="var(--accent-terracotta)" />
                 </div>
                 <div>
-                  <h5 style={{ fontSize: '0.95rem', fontWeight: 700, marginBottom: '0.2rem', lineHeight: 1.3 }}>
-                    {cert.title}
+                  <h5 style={{ fontSize: '0.92rem', fontWeight: 700, marginBottom: '0.2rem', lineHeight: 1.3 }}>
+                    {item.title}
                   </h5>
-                  <div style={{ fontSize: '0.825rem', color: 'var(--text-secondary)' }}>
-                    {cert.issuer}
+                  <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
+                    {item.issuer}
                   </div>
-                  <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '0.35rem' }}>
-                    {cert.type} • {cert.date}
+                  <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>
+                    {item.type} • {item.date}
                   </div>
                 </div>
               </motion.div>
@@ -367,9 +371,9 @@ export default function EducationAndAchievements() {
         </div>
       </div>
 
-      {/* 🔍 LIGHTBOX PHOTO MODAL */}
+      {/* 🔍 CLICKABLE FULL-SIZE LIGHTBOX MODAL */}
       <AnimatePresence>
-        {selectedImage && (
+        {selectedProof && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -377,45 +381,46 @@ export default function EducationAndAchievements() {
             style={{
               position: 'fixed',
               inset: 0,
-              zIndex: 120,
-              background: 'rgba(5, 6, 10, 0.92)',
-              backdropFilter: 'blur(16px)',
+              zIndex: 150,
+              background: 'rgba(5, 7, 12, 0.94)',
+              backdropFilter: 'blur(18px)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               padding: '1.5rem',
             }}
-            onClick={() => setSelectedImage(null)}
+            onClick={() => setSelectedProof(null)}
           >
             <motion.div
-              initial={{ scale: 0.9, y: 20 }}
+              initial={{ scale: 0.92, y: 20 }}
               animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.9, y: 20 }}
+              exit={{ scale: 0.92, y: 20 }}
               style={{
-                maxWidth: '750px',
+                maxWidth: '820px',
                 width: '100%',
                 background: 'var(--bg-surface)',
-                borderRadius: '1.75rem',
+                borderRadius: 'var(--radius-xl)',
                 overflow: 'hidden',
                 border: '1px solid var(--border-medium)',
-                boxShadow: '0 30px 80px rgba(0, 0, 0, 0.8)',
+                boxShadow: 'var(--shadow-modal)',
               }}
               onClick={(e) => e.stopPropagation()}
             >
+              {/* Image Frame */}
               <div style={{ position: 'relative' }}>
                 <img
-                  src={selectedImage.image}
-                  alt={selectedImage.title}
+                  src={selectedProof.image}
+                  alt={selectedProof.title}
                   style={{
                     width: '100%',
                     maxHeight: '65vh',
                     objectFit: 'contain',
-                    background: '#05060a',
+                    background: '#07080c',
                     display: 'block',
                   }}
                 />
                 <button
-                  onClick={() => setSelectedImage(null)}
+                  onClick={() => setSelectedProof(null)}
                   style={{
                     position: 'absolute',
                     top: '1rem',
@@ -432,23 +437,33 @@ export default function EducationAndAchievements() {
                     cursor: 'pointer',
                   }}
                 >
-                  <X size={20} />
+                  <X size={18} />
                 </button>
               </div>
 
-              <div style={{ padding: '1.75rem' }}>
+              {/* Credential Data Footer */}
+              <div style={{ padding: '1.75rem', background: 'var(--bg-surface-elevated)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.4rem' }}>
-                  <Medal size={18} color="#f59e0b" />
-                  <h4 style={{ fontSize: '1.35rem', fontWeight: 800 }}>
-                    {selectedImage.title}
+                  <Award size={18} color="var(--accent-terracotta)" />
+                  <h4 className="font-serif" style={{ fontSize: '1.4rem', fontWeight: 600 }}>
+                    {selectedProof.title}
                   </h4>
                 </div>
-                <div style={{ fontSize: '0.9rem', color: 'var(--accent-rose)', fontWeight: 600, marginBottom: '0.75rem' }}>
-                  {selectedImage.issuer} • {selectedImage.date}
+
+                <div style={{ fontSize: '0.88rem', color: 'var(--accent-terracotta)', fontWeight: 600, marginBottom: '0.75rem' }}>
+                  {selectedProof.issuer} • {selectedProof.date}
                 </div>
-                <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: 1.6 }}>
-                  {selectedImage.caption}
+
+                <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem', lineHeight: 1.6, marginBottom: '1rem' }}>
+                  {selectedProof.caption}
                 </p>
+
+                {selectedProof.certificateNo && (
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+                    <QrCode size={14} color="var(--accent-terracotta)" />
+                    <span>Certificate Identifier: <strong>{selectedProof.certificateNo}</strong></span>
+                  </div>
+                )}
               </div>
             </motion.div>
           </motion.div>

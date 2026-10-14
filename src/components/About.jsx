@@ -28,14 +28,14 @@ export default function About() {
       <div className="container-custom">
         {/* Section Header */}
         <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-          <div className="section-tag">
+          <div className="section-meta-tag">
             <User size={14} />
             <span>Story & Philosophy</span>
           </div>
-          <h2 className="section-heading">
-            Behind the Code: <span className="title-gradient">Driven by Curiosity</span>
+          <h2 className="section-editorial-title">
+            Behind the Code: <span style={{ color: 'var(--accent-terracotta)', fontStyle: 'italic' }}>Driven by Curiosity</span>
           </h2>
-          <p className="section-subheading" style={{ margin: '0 auto' }}>
+          <p className="section-editorial-sub" style={{ margin: '0 auto' }}>
             A disciplined path through diploma engineering, hands-on full-stack development, and real-world milestones.
           </p>
         </div>
@@ -55,7 +55,7 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="studio-card about-story-col"
+            className="atelier-card about-story-col"
             style={{
               gridColumn: 'span 12',
               display: 'flex',
@@ -65,13 +65,13 @@ export default function About() {
             }}
           >
             <div>
-              <h3 style={{ fontSize: '1.75rem', fontWeight: 800, marginBottom: '1.25rem', lineHeight: 1.3 }}>
+              <h3 className="font-serif" style={{ fontSize: '1.85rem', fontWeight: 600, marginBottom: '1.25rem', lineHeight: 1.3 }}>
                 Engineering Real Solutions, Beyond Just Theoretical Code
               </h3>
 
               <p
                 style={{
-                  fontSize: '1.08rem',
+                  fontSize: '1.05rem',
                   color: 'var(--text-secondary)',
                   lineHeight: 1.8,
                   marginBottom: '1.25rem',
@@ -82,12 +82,12 @@ export default function About() {
 
               <p
                 style={{
-                  fontSize: '1rem',
+                  fontSize: '0.98rem',
                   color: 'var(--text-muted)',
                   lineHeight: 1.75,
                 }}
               >
-                My approach to software is grounded in strong fundamentals: clean architecture, data structures, and intuitive interfaces. During my full-stack internship at Sumago Infotech, I worked daily on React.js workflows, component state lifecycles, and backend integrations — earning the <strong>Best Performer of the Month</strong> and the <strong>Curious Catalyst Award</strong> for learning agility.
+                My approach to software is grounded in strong fundamentals: clean architecture, data structures, and intuitive interfaces. During my 12-week full-stack industrial training at Sumago Infotech, I worked daily on React.js workflows, component state lifecycles, and backend integrations — earning the <strong>Best Performer of the Month (July)</strong> with a Gold SCOPE medal and the <strong>Curious Catalyst Award</strong> at the valedictory function for learning agility.
               </p>
             </div>
 
@@ -108,19 +108,19 @@ export default function About() {
                     width: '36px',
                     height: '36px',
                     borderRadius: '10px',
-                    background: 'rgba(251, 113, 133, 0.15)',
+                    background: 'rgba(224, 98, 77, 0.12)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     flexShrink: 0,
                   }}
                 >
-                  <Code2 size={18} color="#fb7185" />
+                  <Code2 size={18} color="var(--accent-terracotta)" />
                 </div>
                 <div>
                   <div style={{ fontWeight: 700, fontSize: '0.95rem' }}>Modular React Craft</div>
                   <div style={{ fontSize: '0.825rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>
-                    Reusable components, clean hooks, and responsive UX.
+                    Reusable components, clean hooks, and accessible UX.
                   </div>
                 </div>
               </div>
@@ -131,14 +131,14 @@ export default function About() {
                     width: '36px',
                     height: '36px',
                     borderRadius: '10px',
-                    background: 'rgba(245, 158, 11, 0.15)',
+                    background: 'rgba(221, 168, 67, 0.12)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     flexShrink: 0,
                   }}
                 >
-                  <Sparkles size={18} color="#f59e0b" />
+                  <Sparkles size={18} color="var(--accent-gold)" />
                 </div>
                 <div>
                   <div style={{ fontWeight: 700, fontSize: '0.95rem' }}>Learning Agility</div>
@@ -156,14 +156,13 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.15 }}
-            className="studio-card about-personal-col"
+            className="atelier-card about-personal-col"
             style={{
               gridColumn: 'span 12',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'space-between',
               padding: '2.5rem',
-              background: 'linear-gradient(180deg, rgba(20, 23, 34, 0.95) 0%, rgba(15, 17, 24, 0.98) 100%)',
             }}
           >
             <div>
@@ -173,9 +172,9 @@ export default function About() {
                   alignItems: 'center',
                   gap: '0.45rem',
                   padding: '0.35rem 0.85rem',
-                  borderRadius: '9999px',
-                  background: 'rgba(251, 113, 133, 0.12)',
-                  color: 'var(--accent-rose)',
+                  borderRadius: 'var(--radius-pill)',
+                  background: 'rgba(224, 98, 77, 0.1)',
+                  color: 'var(--accent-terracotta)',
                   fontSize: '0.8rem',
                   fontWeight: 700,
                   marginBottom: '1.25rem',
@@ -185,7 +184,7 @@ export default function About() {
                 <span>The Human Touch</span>
               </div>
 
-              <h4 style={{ fontSize: '1.35rem', fontWeight: 800, marginBottom: '0.75rem' }}>
+              <h4 className="font-serif" style={{ fontSize: '1.45rem', fontWeight: 600, marginBottom: '0.75rem' }}>
                 Beyond The Terminal
               </h4>
               <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '1.75rem' }}>
@@ -200,9 +199,9 @@ export default function About() {
                     <div
                       key={interest}
                       style={{
-                        padding: '1rem 1.25rem',
-                        borderRadius: '1rem',
-                        background: 'rgba(255, 255, 255, 0.03)',
+                        padding: '0.95rem 1.15rem',
+                        borderRadius: 'var(--radius-md)',
+                        background: 'var(--bg-surface-elevated)',
                         border: '1px solid var(--border-subtle)',
                         display: 'flex',
                         alignItems: 'center',
@@ -214,16 +213,16 @@ export default function About() {
                           width: '36px',
                           height: '36px',
                           borderRadius: '10px',
-                          background: 'rgba(251, 113, 133, 0.12)',
+                          background: 'rgba(224, 98, 77, 0.1)',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
                         }}
                       >
-                        <Icon size={18} color="#fb7185" />
+                        <Icon size={18} color="var(--accent-terracotta)" />
                       </div>
                       <div>
-                        <div style={{ fontWeight: 700, fontSize: '0.95rem' }}>{interest}</div>
+                        <div style={{ fontWeight: 700, fontSize: '0.92rem' }}>{interest}</div>
                         <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
                           {interest === 'Travelling' && 'Exploring new perspectives & cultures'}
                           {interest === 'Listening to Music' && 'Soundtracks that enhance deep focus'}

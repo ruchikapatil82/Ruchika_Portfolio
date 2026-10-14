@@ -3,305 +3,493 @@ import { motion, AnimatePresence } from 'framer-motion'
 import {
   ExternalLink,
   FolderGit2,
-  Sparkles,
-  Layers,
   CheckCircle2,
   Lock,
-  GraduationCap,
   Landmark,
+  GraduationCap,
   ClipboardList,
+  Layers,
+  Sparkles,
+  Maximize2,
+  X,
+  Eye,
 } from 'lucide-react'
 import { GithubIcon } from './BrandIcons'
 import { portfolioData } from '../data/portfolioData'
 
-const projectIcons = {
-  'museum-web': Landmark,
-  'obe-attainment': GraduationCap,
-  vaultnest: Lock,
-  'student-attendance': ClipboardList,
-}
-
 export default function Projects() {
-  const [filter, setFilter] = useState('all')
-  const [selectedProject, setSelectedProject] = useState(null)
   const { projects } = portfolioData
-
-  const filterCategories = [
-    { id: 'all', label: 'All Projects' },
-    { id: 'fullstack', label: 'Full Stack & Web' },
-    { id: 'python', label: 'Python & Data Systems' },
-  ]
-
-  const filteredProjects = projects.filter((p) => {
-    if (filter === 'all') return true
-    if (filter === 'fullstack') return p.category.includes('Full Stack') || p.category.includes('Security')
-    if (filter === 'python') return p.techStack.includes('Python') || p.category.includes('Academic')
-    return true
-  })
+  const [museumActiveView, setMuseumActiveView] = useState(0)
+  const [selectedScreenshot, setSelectedScreenshot] = useState(null)
 
   return (
-    <section id="projects" style={{ padding: '5rem 0', position: 'relative' }}>
+    <section id="projects" style={{ padding: '6rem 0', position: 'relative' }}>
       <div className="container-custom">
         {/* Section Header */}
-        <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-          <div className="section-badge">
+        <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+          <div className="section-meta-tag">
             <FolderGit2 size={14} />
-            <span>Portfolio Work</span>
+            <span>Case Studies & Systems</span>
           </div>
-          <h2 className="section-title">
-            Featured <span className="gradient-brand-text">Projects & Systems</span>
+          <h2 className="section-editorial-title">
+            Featured Projects & <span style={{ color: 'var(--accent-terracotta)', fontStyle: 'italic' }}>Live Interfaces</span>
           </h2>
-          <p className="section-desc" style={{ margin: '0 auto' }}>
-            Real-world applications spanning React, the MERN stack, Python web frameworks, and database architectures.
+          <p className="section-editorial-sub" style={{ margin: '0 auto' }}>
+            Production-grade web applications, security platforms, and academic tools backed by genuine implementations and screenshots.
           </p>
-
-          {/* Filter Pills */}
-          <div
-            style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              justifyContent: 'center',
-              gap: '0.5rem',
-              marginTop: '2rem',
-            }}
-          >
-            {filterCategories.map((cat) => {
-              const isActive = filter === cat.id
-              return (
-                <button
-                  key={cat.id}
-                  onClick={() => setFilter(cat.id)}
-                  style={{
-                    background: isActive ? 'var(--gradient-brand)' : 'var(--bg-card)',
-                    color: isActive ? '#ffffff' : 'var(--text-secondary)',
-                    border: '1px solid',
-                    borderColor: isActive ? 'transparent' : 'var(--border-subtle)',
-                    padding: '0.5rem 1.25rem',
-                    borderRadius: '9999px',
-                    fontSize: '0.875rem',
-                    fontWeight: isActive ? 600 : 500,
-                    cursor: 'pointer',
-                    transition: 'all 0.2s ease',
-                    boxShadow: isActive ? '0 4px 15px rgba(168, 85, 247, 0.35)' : 'none',
-                  }}
-                >
-                  {cat.label}
-                </button>
-              )
-            })}
-          </div>
         </div>
 
-        {/* Bento Grid Projects */}
-        <div
+        {/* 🌟 PROJECT 1: THE TIMES GALLERY (MUSEUM WEBSITE) — CASE STUDY SHOWCASE */}
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.55 }}
+          className="atelier-card"
           style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(12, 1fr)',
-            gap: '1.75rem',
+            padding: '2.5rem',
+            marginBottom: '3rem',
+            border: '1px solid var(--border-medium)',
           }}
         >
-          {filteredProjects.map((project, idx) => {
-            const Icon = projectIcons[project.id] || Layers
-            const isWide = idx === 0 || idx === 1
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(12, 1fr)',
+              gap: '2.5rem',
+              alignItems: 'center',
+            }}
+          >
+            {/* Project Details (Spans 5 cols) */}
+            <div style={{ gridColumn: 'span 12' }} className="project-detail-col">
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', marginBottom: '1rem' }}>
+                <span className="meta-pill meta-pill-accent">
+                  <Landmark size={13} />
+                  <span>Featured Full Stack Project</span>
+                </span>
+                <span className="meta-pill">MERN Architecture</span>
+              </div>
 
-            return (
-              <motion.div
-                key={project.id}
-                layout
-                initial={{ opacity: 0, y: 25 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.45, delay: idx * 0.1 }}
-                className="bento-card project-card"
+              <h3 className="font-serif" style={{ fontSize: 'clamp(1.75rem, 3vw, 2.3rem)', fontWeight: 600, lineHeight: 1.2, marginBottom: '0.75rem' }}>
+                The Times Gallery
+              </h3>
+
+              <div style={{ fontSize: '0.98rem', color: 'var(--accent-terracotta)', fontWeight: 600, marginBottom: '1.25rem' }}>
+                Cultural Exhibition Portal & Administrative Membership Ledger
+              </div>
+
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.98rem', lineHeight: 1.7, marginBottom: '1.5rem' }}>
+                A full-stack web application designed for cultural institutions to showcase exhibitions, facilitate online ticket reservations, and manage museum memberships through a centralized administrative dashboard.
+              </p>
+
+              {/* Highlights */}
+              <div style={{ marginBottom: '1.75rem' }}>
+                <div style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '0.65rem' }}>
+                  Architecture & Deliverables:
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.55rem' }}>
+                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.55rem', fontSize: '0.88rem', color: 'var(--text-secondary)' }}>
+                    <CheckCircle2 size={16} color="var(--accent-terracotta)" style={{ flexShrink: 0, marginTop: '2px' }} />
+                    <span><strong>Public Visitor Portal:</strong> Timings (9:00 AM – 6:00 PM), schedule views, ticket booking forms.</span>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.55rem', fontSize: '0.88rem', color: 'var(--text-secondary)' }}>
+                    <CheckCircle2 size={16} color="var(--accent-terracotta)" style={{ flexShrink: 0, marginTop: '2px' }} />
+                    <span><strong>Admin Dashboard:</strong> Live membership records ledger with action items & pass validation.</span>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.55rem', fontSize: '0.88rem', color: 'var(--text-secondary)' }}>
+                    <CheckCircle2 size={16} color="var(--accent-terracotta)" style={{ flexShrink: 0, marginTop: '2px' }} />
+                    <span><strong>RESTful Services:</strong> Express.js & MongoDB backend persisting visitor passes and inquiries.</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Tech Stack Tags */}
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.45rem', marginBottom: '1.75rem' }}>
+                {projects[0].techStack.map((tech) => (
+                  <span key={tech} className="meta-pill" style={{ fontSize: '0.78rem' }}>
+                    {tech}
+                  </span>
+                ))}
+              </div>
+
+              {/* Action Buttons */}
+              <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+                <a
+                  href={projects[0].github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-editorial-secondary"
+                  style={{ padding: '0.55rem 1.25rem', fontSize: '0.85rem' }}
+                >
+                  <GithubIcon size={15} />
+                  <span>GitHub Repository</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Interactive Browser Mockup with View Switcher (Spans 7 cols) */}
+            <div style={{ gridColumn: 'span 12' }} className="project-mockup-col">
+              {/* Tab Selector for Screenshots */}
+              <div
                 style={{
-                  gridColumn: 'span 12',
                   display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                  padding: '2rem',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  marginBottom: '0.85rem',
                 }}
-                data-is-wide={isWide ? 'true' : 'false'}
               >
-                <div>
-                  {/* Top Bar: Icon + Category Badge + Status */}
+                <button
+                  onClick={() => setMuseumActiveView(0)}
+                  style={{
+                    padding: '0.4rem 0.95rem',
+                    borderRadius: 'var(--radius-pill)',
+                    border: '1px solid',
+                    borderColor: museumActiveView === 0 ? 'var(--accent-terracotta)' : 'var(--border-subtle)',
+                    background: museumActiveView === 0 ? 'rgba(224, 98, 77, 0.12)' : 'var(--bg-surface)',
+                    color: museumActiveView === 0 ? 'var(--accent-terracotta)' : 'var(--text-secondary)',
+                    fontSize: '0.825rem',
+                    fontWeight: 600,
+                    cursor: 'pointer',
+                    transition: 'all 0.2s',
+                  }}
+                >
+                  View 1: Visitor Exhibition Portal
+                </button>
+                <button
+                  onClick={() => setMuseumActiveView(1)}
+                  style={{
+                    padding: '0.4rem 0.95rem',
+                    borderRadius: 'var(--radius-pill)',
+                    border: '1px solid',
+                    borderColor: museumActiveView === 1 ? 'var(--accent-terracotta)' : 'var(--border-subtle)',
+                    background: museumActiveView === 1 ? 'rgba(224, 98, 77, 0.12)' : 'var(--bg-surface)',
+                    color: museumActiveView === 1 ? 'var(--accent-terracotta)' : 'var(--text-secondary)',
+                    fontSize: '0.825rem',
+                    fontWeight: 600,
+                    cursor: 'pointer',
+                    transition: 'all 0.2s',
+                  }}
+                >
+                  View 2: Admin Membership Dashboard
+                </button>
+              </div>
+
+              {/* Browser Window Frame */}
+              <div
+                className="browser-window"
+                style={{ cursor: 'pointer' }}
+                onClick={() => setSelectedScreenshot(projects[0].images[museumActiveView])}
+              >
+                <div className="browser-header">
+                  <div style={{ display: 'flex', gap: '6px' }}>
+                    <span className="browser-dot" style={{ background: '#ef4444' }}></span>
+                    <span className="browser-dot" style={{ background: '#f59e0b' }}></span>
+                    <span className="browser-dot" style={{ background: '#10b981' }}></span>
+                  </div>
+                  <div className="browser-address">
+                    {museumActiveView === 0 ? 'https://thetimesgallery.org/exhibitions' : 'https://thetimesgallery.org/admin/membership'}
+                  </div>
+                  <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: '0.35rem', color: 'var(--text-muted)', fontSize: '0.75rem' }}>
+                    <Eye size={13} />
+                    <span>Click to Zoom</span>
+                  </div>
+                </div>
+
+                <div style={{ position: 'relative', overflow: 'hidden' }}>
+                  <img
+                    src={projects[0].images[museumActiveView].url}
+                    alt={projects[0].images[museumActiveView].caption}
+                    className="browser-content-img"
+                    style={{ maxHeight: '380px' }}
+                  />
                   <div
                     style={{
+                      padding: '0.85rem 1rem',
+                      background: 'rgba(15, 18, 24, 0.94)',
+                      borderTop: '1px solid var(--border-subtle)',
+                      fontSize: '0.8rem',
+                      color: 'var(--text-secondary)',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'space-between',
-                      marginBottom: '1.5rem',
                     }}
                   >
-                    <div
-                      style={{
-                        width: '46px',
-                        height: '46px',
-                        borderRadius: '14px',
-                        background: 'rgba(168, 85, 247, 0.15)',
-                        border: '1px solid rgba(168, 85, 247, 0.3)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                      }}
-                    >
-                      <Icon size={22} color="#c084fc" />
-                    </div>
-
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                      <span
-                        style={{
-                          fontSize: '0.75rem',
-                          fontWeight: 600,
-                          padding: '0.25rem 0.65rem',
-                          borderRadius: '9999px',
-                          background: 'rgba(255, 255, 255, 0.05)',
-                          border: '1px solid var(--border-subtle)',
-                          color: 'var(--text-secondary)',
-                        }}
-                      >
-                        {project.category}
-                      </span>
-                      <span
-                        style={{
-                          fontSize: '0.72rem',
-                          fontWeight: 600,
-                          padding: '0.25rem 0.65rem',
-                          borderRadius: '9999px',
-                          background: 'rgba(168, 85, 247, 0.12)',
-                          color: '#c084fc',
-                          border: '1px solid rgba(168, 85, 247, 0.3)',
-                        }}
-                      >
-                        {project.statusBadge}
-                      </span>
-                    </div>
+                    <span>{projects[0].images[museumActiveView].caption}</span>
+                    <Maximize2 size={13} color="var(--accent-terracotta)" />
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
 
-                  {/* Title & Description */}
-                  <h3
-                    style={{
-                      fontSize: '1.45rem',
-                      fontWeight: 700,
-                      letterSpacing: '-0.02em',
-                      marginBottom: '0.85rem',
-                      lineHeight: 1.3,
-                    }}
-                  >
-                    {project.title}
-                  </h3>
-
-                  <p
-                    style={{
-                      fontSize: '0.95rem',
-                      color: 'var(--text-secondary)',
-                      lineHeight: 1.65,
-                      marginBottom: '1.5rem',
-                    }}
-                  >
-                    {project.description}
-                  </p>
-
-                  {/* Highlights Bullet Points */}
-                  <div style={{ marginBottom: '1.5rem' }}>
-                    <div style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--text-muted)', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                      Key Features & Architecture:
-                    </div>
-                    <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.45rem' }}>
-                      {project.highlights.map((item, hIdx) => (
-                        <li
-                          key={hIdx}
-                          style={{
-                            display: 'flex',
-                            alignItems: 'flex-start',
-                            gap: '0.5rem',
-                            fontSize: '0.85rem',
-                            color: 'var(--text-secondary)',
-                            lineHeight: 1.45,
-                          }}
-                        >
-                          <CheckCircle2 size={14} color="#a855f7" style={{ flexShrink: 0, marginTop: '2px' }} />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
+        {/* 🌟 PROJECT 2: VAULTNEST — REAL ACCOUNT SECURITY & AUTH UI */}
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.55 }}
+          className="atelier-card"
+          style={{
+            padding: '2.5rem',
+            marginBottom: '3rem',
+            border: '1px solid var(--border-medium)',
+          }}
+        >
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(12, 1fr)',
+              gap: '2.5rem',
+              alignItems: 'center',
+            }}
+          >
+            {/* Browser Mockup (Spans 6 cols) */}
+            <div style={{ gridColumn: 'span 12' }} className="project-mockup-col-2">
+              <div
+                className="browser-window"
+                style={{ cursor: 'pointer' }}
+                onClick={() => setSelectedScreenshot(projects[1].images[0])}
+              >
+                <div className="browser-header">
+                  <div style={{ display: 'flex', gap: '6px' }}>
+                    <span className="browser-dot" style={{ background: '#ef4444' }}></span>
+                    <span className="browser-dot" style={{ background: '#f59e0b' }}></span>
+                    <span className="browser-dot" style={{ background: '#10b981' }}></span>
+                  </div>
+                  <div className="browser-address">
+                    https://vaultnest.app/register
+                  </div>
+                  <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: '0.35rem', color: 'var(--text-muted)', fontSize: '0.75rem' }}>
+                    <Eye size={13} />
+                    <span>Click to Zoom</span>
                   </div>
                 </div>
 
-                {/* Bottom: Tech Stack Pills & Action Links */}
-                <div>
+                <div style={{ position: 'relative', overflow: 'hidden' }}>
+                  <img
+                    src={projects[1].images[0].url}
+                    alt={projects[1].images[0].caption}
+                    className="browser-content-img"
+                    style={{ maxHeight: '380px' }}
+                  />
                   <div
                     style={{
-                      display: 'flex',
-                      flexWrap: 'wrap',
-                      gap: '0.4rem',
-                      marginBottom: '1.5rem',
-                      paddingTop: '1.25rem',
+                      padding: '0.85rem 1rem',
+                      background: 'rgba(15, 18, 24, 0.94)',
                       borderTop: '1px solid var(--border-subtle)',
+                      fontSize: '0.8rem',
+                      color: 'var(--text-secondary)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
                     }}
                   >
-                    {project.techStack.map((tech) => (
-                      <span key={tech} className="tech-pill" style={{ fontSize: '0.78rem' }}>
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
-                    {project.github && (
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn-secondary"
-                        style={{ padding: '0.5rem 1.15rem', fontSize: '0.85rem' }}
-                      >
-                        <GithubIcon size={15} />
-                        <span>Source Code</span>
-                      </a>
-                    )}
-
-                    {project.liveDemo ? (
-                      <a
-                        href={project.liveDemo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn-primary"
-                        style={{ padding: '0.5rem 1.15rem', fontSize: '0.85rem' }}
-                      >
-                        <span>Live Demo</span>
-                        <ExternalLink size={15} />
-                      </a>
-                    ) : (
-                      <button
-                        onClick={() => setSelectedProject(project)}
-                        style={{
-                          background: 'transparent',
-                          border: 'none',
-                          color: 'var(--accent-purple)',
-                          fontSize: '0.85rem',
-                          fontWeight: 600,
-                          cursor: 'pointer',
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '0.35rem',
-                          padding: '0.5rem 0.5rem',
-                        }}
-                      >
-                        <Sparkles size={14} />
-                        <span>Details & Stack</span>
-                      </button>
-                    )}
+                    <span>{projects[1].images[0].caption}</span>
+                    <Maximize2 size={13} color="var(--accent-terracotta)" />
                   </div>
                 </div>
-              </motion.div>
-            )
-          })}
+              </div>
+            </div>
+
+            {/* Details (Spans 6 cols) */}
+            <div style={{ gridColumn: 'span 12' }} className="project-detail-col-2">
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', marginBottom: '1rem' }}>
+                <span className="meta-pill meta-pill-accent">
+                  <Lock size={13} />
+                  <span>Security & Web Architecture</span>
+                </span>
+                <span className="meta-pill">Python / Flask</span>
+              </div>
+
+              <h3 className="font-serif" style={{ fontSize: 'clamp(1.75rem, 3vw, 2.3rem)', fontWeight: 600, lineHeight: 1.2, marginBottom: '0.75rem' }}>
+                VaultNest — Password Manager
+              </h3>
+
+              <div style={{ fontSize: '0.98rem', color: 'var(--accent-terracotta)', fontWeight: 600, marginBottom: '1.25rem' }}>
+                Cryptographic Hashing, Entropy Scoring & Authenticated Vault
+              </div>
+
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.98rem', lineHeight: 1.7, marginBottom: '1.5rem' }}>
+                A focused security web application built to safeguard digital credentials. Provides users with an intuitive vault interface protected by cryptographic hashing, session tokens, and client-side password strength validation.
+              </p>
+
+              {/* Highlights */}
+              <div style={{ marginBottom: '1.75rem' }}>
+                <div style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '0.65rem' }}>
+                  Core Implementation Features:
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.55rem' }}>
+                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.55rem', fontSize: '0.88rem', color: 'var(--text-secondary)' }}>
+                    <CheckCircle2 size={16} color="var(--accent-terracotta)" style={{ flexShrink: 0, marginTop: '2px' }} />
+                    <span><strong>Werkzeug Cryptography:</strong> Salted password hashing securing all user authentication credentials.</span>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.55rem', fontSize: '0.88rem', color: 'var(--text-secondary)' }}>
+                    <CheckCircle2 size={16} color="var(--accent-terracotta)" style={{ flexShrink: 0, marginTop: '2px' }} />
+                    <span><strong>Strength Entropy Meter:</strong> Real-time visual feedback checking minimum 12+ characters, symbols, and match confirmation.</span>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.55rem', fontSize: '0.88rem', color: 'var(--text-secondary)' }}>
+                    <CheckCircle2 size={16} color="var(--accent-terracotta)" style={{ flexShrink: 0, marginTop: '2px' }} />
+                    <span><strong>Protected Routes:</strong> Session-guarded endpoints ensuring credentials can only be accessed by authenticated users.</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Tech Stack */}
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.45rem', marginBottom: '1.75rem' }}>
+                {projects[1].techStack.map((tech) => (
+                  <span key={tech} className="meta-pill" style={{ fontSize: '0.78rem' }}>
+                    {tech}
+                  </span>
+                ))}
+              </div>
+
+              {/* Action Buttons */}
+              <div style={{ display: 'flex', gap: '0.75rem' }}>
+                <a
+                  href={projects[1].github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-editorial-primary"
+                  style={{ padding: '0.55rem 1.25rem', fontSize: '0.85rem' }}
+                >
+                  <GithubIcon size={15} />
+                  <span>View Verified GitHub Code</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* 🌟 PROJECTS 3 & 4: CO ATTAINMENT & STUDENT ATTENDANCE (2-COL ARCHITECTURE) */}
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
+            gap: '1.75rem',
+          }}
+        >
+          {/* Project 3: CO Attainment */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="atelier-card"
+            style={{
+              padding: '2.25rem',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+            }}
+          >
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
+                <span className="meta-pill meta-pill-gold">
+                  <GraduationCap size={13} />
+                  <span>Academic Accreditation Engine</span>
+                </span>
+                <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Python & Django</span>
+              </div>
+
+              <h4 className="font-serif" style={{ fontSize: '1.45rem', fontWeight: 600, marginBottom: '0.4rem', lineHeight: 1.25 }}>
+                CO Attainment Calculation System
+              </h4>
+
+              <div style={{ fontSize: '0.88rem', color: 'var(--accent-terracotta)', fontWeight: 600, marginBottom: '1rem' }}>
+                Automated Course Outcome Analysis & Pandas Gap Computation
+              </div>
+
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem', lineHeight: 1.65, marginBottom: '1.25rem' }}>
+                An automated computational system developed for engineering departments to calculate Course Outcome (CO) attainment percentages, aggregate assessment evaluations, and generate gap analyses aligned with engineering accreditation requirements.
+              </p>
+
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem', marginBottom: '1.5rem' }}>
+                {projects[2].techStack.map((tech) => (
+                  <span key={tech} className="meta-pill" style={{ fontSize: '0.75rem' }}>
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div style={{ paddingTop: '1.25rem', borderTop: '1px solid var(--border-subtle)' }}>
+              <a
+                href={projects[2].github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-editorial-secondary"
+                style={{ width: '100%', padding: '0.6rem', fontSize: '0.85rem' }}
+              >
+                <GithubIcon size={15} />
+                <span>Open Source Repository</span>
+              </a>
+            </div>
+          </motion.div>
+
+          {/* Project 4: Student Attendance */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="atelier-card"
+            style={{
+              padding: '2.25rem',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+            }}
+          >
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
+                <span className="meta-pill">
+                  <ClipboardList size={13} />
+                  <span>Desktop Software</span>
+                </span>
+                <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Python & SQLite3</span>
+              </div>
+
+              <h4 className="font-serif" style={{ fontSize: '1.45rem', fontWeight: 600, marginBottom: '0.4rem', lineHeight: 1.25 }}>
+                Student Attendance Management System
+              </h4>
+
+              <div style={{ fontSize: '0.88rem', color: 'var(--accent-terracotta)', fontWeight: 600, marginBottom: '1rem' }}>
+                Relational Database Ledger & Roll-Call Accounting
+              </div>
+
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem', lineHeight: 1.65, marginBottom: '1.25rem' }}>
+                A standalone desktop application engineered for academic recordkeeping, enabling faculty to maintain student profiles, record daily classroom attendance, and query historical attendance percentages with persistent database reliability.
+              </p>
+
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem', marginBottom: '1.5rem' }}>
+                {projects[3].techStack.map((tech) => (
+                  <span key={tech} className="meta-pill" style={{ fontSize: '0.75rem' }}>
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div style={{ paddingTop: '1.25rem', borderTop: '1px solid var(--border-subtle)' }}>
+              <a
+                href={projects[3].github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-editorial-secondary"
+                style={{ width: '100%', padding: '0.6rem', fontSize: '0.85rem' }}
+              >
+                <GithubIcon size={15} />
+                <span>GitHub Profile Repository</span>
+              </a>
+            </div>
+          </motion.div>
         </div>
       </div>
 
-      {/* Project Details Modal */}
+      {/* 🔍 LIGHTBOX MODAL FOR PROJECT SCREENSHOTS */}
       <AnimatePresence>
-        {selectedProject && (
+        {selectedScreenshot && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -309,94 +497,69 @@ export default function Projects() {
             style={{
               position: 'fixed',
               inset: 0,
-              zIndex: 100,
-              background: 'rgba(0, 0, 0, 0.75)',
-              backdropFilter: 'blur(8px)',
+              zIndex: 140,
+              background: 'rgba(5, 7, 12, 0.92)',
+              backdropFilter: 'blur(16px)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               padding: '1.5rem',
             }}
-            onClick={() => setSelectedProject(null)}
+            onClick={() => setSelectedScreenshot(null)}
           >
             <motion.div
-              initial={{ scale: 0.95, y: 20 }}
+              initial={{ scale: 0.94, y: 15 }}
               animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.95, y: 20 }}
-              className="bento-card"
+              exit={{ scale: 0.94, y: 15 }}
               style={{
-                maxWidth: '600px',
+                maxWidth: '900px',
                 width: '100%',
-                maxHeight: '90vh',
-                overflowY: 'auto',
-                padding: '2.25rem',
-                background: 'var(--bg-card-solid)',
+                background: 'var(--bg-surface)',
+                borderRadius: 'var(--radius-xl)',
+                overflow: 'hidden',
+                border: '1px solid var(--border-medium)',
+                boxShadow: 'var(--shadow-modal)',
               }}
               onClick={(e) => e.stopPropagation()}
             >
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
-                <h3 style={{ fontSize: '1.5rem', fontWeight: 700 }}>{selectedProject.title}</h3>
-                <button
-                  onClick={() => setSelectedProject(null)}
+              <div style={{ position: 'relative' }}>
+                <img
+                  src={selectedScreenshot.url}
+                  alt={selectedScreenshot.caption}
                   style={{
-                    background: 'transparent',
-                    border: 'none',
-                    color: 'var(--text-muted)',
+                    width: '100%',
+                    maxHeight: '70vh',
+                    objectFit: 'contain',
+                    background: '#0a0c10',
+                    display: 'block',
+                  }}
+                />
+                <button
+                  onClick={() => setSelectedScreenshot(null)}
+                  style={{
+                    position: 'absolute',
+                    top: '1rem',
+                    right: '1rem',
+                    width: '36px',
+                    height: '36px',
+                    borderRadius: '50%',
+                    background: 'rgba(0, 0, 0, 0.75)',
+                    border: '1px solid rgba(255, 255, 255, 0.2)',
+                    color: '#ffffff',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
                     cursor: 'pointer',
-                    fontSize: '1.25rem',
                   }}
                 >
-                  ✕
+                  <X size={18} />
                 </button>
               </div>
 
-              <div style={{ fontSize: '0.85rem', color: 'var(--accent-purple)', fontWeight: 600, marginBottom: '1rem' }}>
-                {selectedProject.category} • {selectedProject.statusBadge}
-              </div>
-
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: 1.7, marginBottom: '1.5rem' }}>
-                {selectedProject.description}
-              </p>
-
-              <div style={{ marginBottom: '1.5rem' }}>
-                <div style={{ fontWeight: 600, fontSize: '0.9rem', marginBottom: '0.5rem' }}>Implemented Stack:</div>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-                  {selectedProject.techStack.map((tech) => (
-                    <span key={tech} className="tech-pill">
-                      {tech}
-                    </span>
-                  ))}
+              <div style={{ padding: '1.5rem', background: 'var(--bg-surface-elevated)' }}>
+                <div style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--text-primary)' }}>
+                  {selectedScreenshot.caption}
                 </div>
-              </div>
-
-              <div style={{ marginBottom: '1.5rem' }}>
-                <div style={{ fontWeight: 600, fontSize: '0.9rem', marginBottom: '0.5rem' }}>Core Capabilities:</div>
-                <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                  {selectedProject.highlights.map((h, i) => (
-                    <li key={i} style={{ display: 'flex', gap: '0.5rem', fontSize: '0.88rem', color: 'var(--text-secondary)' }}>
-                      <CheckCircle2 size={16} color="#a855f7" style={{ flexShrink: 0, marginTop: '2px' }} />
-                      <span>{h}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div style={{ display: 'flex', gap: '0.75rem', marginTop: '1.5rem' }}>
-                {selectedProject.github && (
-                  <a
-                    href={selectedProject.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-primary"
-                    style={{ flex: 1 }}
-                  >
-                    <GithubIcon size={16} />
-                    <span>Open GitHub Repository</span>
-                  </a>
-                )}
-                <button onClick={() => setSelectedProject(null)} className="btn-secondary">
-                  Close
-                </button>
               </div>
             </motion.div>
           </motion.div>
@@ -404,12 +567,18 @@ export default function Projects() {
       </AnimatePresence>
 
       <style>{`
-        @media (min-width: 900px) {
-          .project-card[data-is-wide="true"] {
-            grid-column: span 6 !important;
+        @media (min-width: 960px) {
+          .project-detail-col {
+            grid-column: span 5 !important;
           }
-          .project-card[data-is-wide="false"] {
-            grid-column: span 6 !important;
+          .project-mockup-col {
+            grid-column: span 7 !important;
+          }
+          .project-mockup-col-2 {
+            grid-column: span 7 !important;
+          }
+          .project-detail-col-2 {
+            grid-column: span 5 !important;
           }
         }
       `}</style>
